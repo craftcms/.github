@@ -10,7 +10,7 @@ gruntflie.js export-ignore
 gulpfile.js export-ignore
 package.json
 package-lock.json
-README.md
+README.md export-ignore
 tests/ export-ignore
 
 # Auto detect text files and perform LF normalization
