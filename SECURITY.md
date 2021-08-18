@@ -16,7 +16,7 @@ While working to identify potential security vulnerabilities, we ask that you:
 
 ## Scope
 
-We are only interested in vulnerabilities that affect Craft or [first party Craft plugins](https://github.com/craftcms), tested against **your own local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation that you don’t own, including [craftcms.com](https://craftcms.com) or [demo.craftcms.com](https://demo.craftcms.com).
+We are only interested in vulnerabilities that affect Craft or [first party Craft plugins](https://github.com/craftcms), tested against **your own local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation that you don’t own, including [craftcms.com](https://craftcms.com).
 
 ### Qualifying Vulnerabilities
 
