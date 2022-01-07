@@ -1,4 +1,4 @@
-![Craft CMS logo](github-profile-banner.png)
+![Craft CMS logo](https://raw.githubusercontent.com/craftcms/.github/main/profile/github-profile-banner.png)
 
 Craft CMS is a flexible, extensible content management system for building bespoke digital experiences.
 
