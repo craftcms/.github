@@ -18,6 +18,8 @@ While working to identify potential security vulnerabilities, we ask that you:
 
 We are only interested in vulnerabilities that affect Craft or [first party Craft plugins](https://github.com/craftcms), tested against **your own local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation that you don’t own, including [craftcms.com](https://craftcms.com).
 
+We are only interested in reports directly from the security researcher that discovered them, not from third-party bug bounty programs.
+
 ### Qualifying Vulnerabilities
 
 - [Cross-Site Scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting)
