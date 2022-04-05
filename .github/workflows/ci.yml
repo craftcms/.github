@@ -63,6 +63,7 @@ jobs:
   # Run PHPStan checks outside of the matrix
   phpstan:
     runs-on: ubuntu-latest
+    if: ${{ inputs.run_phpstan }}
     needs: ecs
 
     steps:
@@ -102,7 +103,9 @@ jobs:
   # Run Craft tests in the matrix
   tests:
     runs-on: ${{ matrix.operating-system }}
+    if: ${{ inputs.run_tests }}
     needs: phpstan
+
     strategy:
       matrix:
         operating-system: [ 'ubuntu-latest' ]
