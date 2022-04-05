@@ -1,0 +1,10 @@
+{
+  "name": "Craft CMS Org Workflow",
+  "description": "Craft CMS Org CI starter workflow.",
+  "categories": [
+    "PHP"
+  ],
+  "filePatterns": [
+    "composer.json$"
+  ]
+}

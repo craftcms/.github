@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - develop
-      - '4.0'
+      [ $default-branch ]
   pull_request:
 
 env:
