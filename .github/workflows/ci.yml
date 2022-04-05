@@ -1,6 +1,11 @@
 name: ci
 on:
   workflow_call:
+    inputs:
+      run_ecs:
+        required: false
+        default: true
+        type: boolean
   workflow_dispatch:
   push:
     branches:
