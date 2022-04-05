@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Test
         if: ${{ ! inputs.run_ecs }}
-        run: exit 1
+        run: exit 0
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -73,7 +73,7 @@ jobs:
     steps:
       - name: test
         if: ${{ ! inputs.run_phpstan }}
-        run: exit 1
+        run: exit 0
 
       - name: Checkout
         uses: actions/checkout@v3
