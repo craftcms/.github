@@ -14,6 +14,10 @@ on:
         required: false
         default: true
         type: boolean
+      php_versions:
+        required: false
+        default: '["7.2", "7.3", "7.4", "8.0", "8.1"]'
+        type: string
   workflow_dispatch:
   push:
     branches:
@@ -21,6 +25,10 @@ on:
       - '4.0'
       - feature/ghaction2
   pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}-1
+  cancel-in-progress: true
 
 env:
   SLACK_NOTIFICATION_TITLE: '<{run_url}|build> has {status_message}'
@@ -107,7 +115,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ 'ubuntu-latest' ]
-        php-versions: [ 8.1, 8.0 ]
+        php-versions: ${{ fromJSON(inputs.php_versions) }}
         db: [ 'mysql', 'pgsql' ]
 
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.db }}
