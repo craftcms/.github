@@ -34,8 +34,12 @@ jobs:
   # Run ECS checks outside of the matrix
   ecs:
     runs-on: ubuntu-latest
-    if: ${{ inputs.run_ecs }}
+    if: always()
     steps:
+      - name: Test
+        if: ${{ ! inputs.run_ecs }}
+        run: exit 1
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -63,10 +67,14 @@ jobs:
   # Run PHPStan checks outside of the matrix
   phpstan:
     runs-on: ubuntu-latest
-    if: ${{ inputs.run_phpstan }}
+    if: always()
     needs: ecs
 
     steps:
+      - name: test
+        if: ${{ ! inputs.run_phpstan }}
+        run: exit 1
+
       - name: Checkout
         uses: actions/checkout@v3
 
