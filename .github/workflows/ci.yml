@@ -6,6 +6,7 @@ on:
     branches:
       - develop
       - '4.0'
+      - feature/ghaction2
   pull_request:
 
 env:
