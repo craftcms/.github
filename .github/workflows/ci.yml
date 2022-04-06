@@ -4,19 +4,19 @@ on:
     inputs:
       run_ecs:
         required: false
-        default: true
+        default: false
         type: boolean
       run_phpstan:
         required: false
-        default: true
+        default: false
         type: boolean
       run_tests:
         required: false
-        default: true
+        default: false
         type: boolean
       php_versions:
-        required: false
-        default: '["7.2", "7.3", "7.4", "8.0", "8.1"]'
+        required: true
+
         type: string
     secrets:
       slack_webhook_url:
@@ -50,6 +50,17 @@ jobs:
 
       - name: Run ECS checks
         run: vendor/bin/ecs check --ansi
+
+      - name: Cancel current workflow run
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.actions.cancelWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId
+            })
 
       - name: Slack notification failure
         uses: ravsamhq/notify-slack-action@v1
