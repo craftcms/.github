@@ -19,7 +19,7 @@ on:
         default: '["7.2", "7.3", "7.4", "8.0", "8.1"]'
         type: string
     secrets:
-      SLACK_WEBHOOK_URL:
+      slack_webhook_url:
         required: true
   workflow_dispatch:
   pull_request:
@@ -64,7 +64,7 @@ jobs:
           mention_groups: ${{ env.SLACK_NOTIFICATION_GROUP_ID }}
           mention_groups_when: ${{ env.SLACK_NOTIFICATION_ERROR_LEVELS }}
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
 
   # Run PHPStan checks outside of the matrix
   phpstan:
@@ -103,7 +103,7 @@ jobs:
           mention_groups: ${{ env.SLACK_NOTIFICATION_GROUP_ID }}
           mention_groups_when: ${{ env.SLACK_NOTIFICATION_ERROR_LEVELS }}
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
 
   # Run Craft tests in the matrix
   tests:
@@ -240,7 +240,7 @@ jobs:
           mention_groups: ${{ env.SLACK_NOTIFICATION_GROUP_ID }}
           mention_groups_when: ${{ env.SLACK_NOTIFICATION_ERROR_LEVELS }}
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
 
   notify_success:
     if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
@@ -256,4 +256,4 @@ jobs:
           footer: ${{ env.SLACK_NOTIFICATION_FOOTER }}
           notify_when: 'success'
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
