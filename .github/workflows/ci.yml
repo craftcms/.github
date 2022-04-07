@@ -15,7 +15,7 @@ on:
         default: false
         type: boolean
       php_versions:
-        required: true
+        required: false
         default: '[]'
         type: string
     secrets:
