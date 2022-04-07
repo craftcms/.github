@@ -16,7 +16,7 @@ on:
         type: boolean
       php_versions:
         required: true
-
+        default: '[]'
         type: string
     secrets:
       slack_webhook_url:
