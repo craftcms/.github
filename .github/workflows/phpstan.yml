@@ -1,0 +1,53 @@
+name: ci
+on:
+  workflow_call:
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+
+  phpstan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-ansi --no-progress
+
+      - name: Check .env.example.mysql exists
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "tests/.env.example.mysql"
+
+      - name: Copy tests .env
+        if: ${{ steps.check_files.outputs.files_exists == 'true' }}
+        run: cp ./tests/.env.example.mysql ./tests/.env
+
+      - name: Create folders
+        if: ${{ steps.check_files.outputs.files_exists == 'true' }}
+        run: mkdir tests/_craft/storage/runtime/compiled_classes
+
+      - name: Build Codeception support files
+        if: ${{ steps.check_files.outputs.files_exists == 'true' }}
+        run: "vendor/bin/codecept build"
+
+      - name: Run PHPStan checks
+        run: "vendor/bin/phpstan --memory-limit=2G"
+
+      - name: Cancel current workflow run
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.actions.cancelWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId
+            })
