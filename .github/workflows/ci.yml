@@ -24,10 +24,6 @@ on:
   workflow_dispatch:
   pull_request:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 env:
   SLACK_NOTIFICATION_TITLE: '<{run_url}|build> has {status_message}'
   SLACK_NOTIFICATION_MESSAGE_FORMAT: '{emoji} <{commit_url}|{commit_sha}> {status_message} in <{repo_url}|{repo}> on {branch}'
