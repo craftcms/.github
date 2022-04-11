@@ -1,0 +1,41 @@
+name: ci
+on:
+  workflow_call:
+    inputs:
+      success:
+        required: true
+        type: boolean
+
+jobs:
+
+  notify_success:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.success }}
+    steps:
+
+      - name: Notify Slack - Success
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: 'success'
+          success_text: 'Build successfully completed by ${{ github.actor }} for `${{ github.ref }}`'
+          failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+          cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
+
+  notify_failure:
+    runs-on: ubuntu-latest
+    if: ${{ ! inputs.success }}
+    steps:
+
+      - name: Notify Slack - Failure
+        uses: innocarpe/actions-slack@v1
+        with:
+          status: 'failure'
+          success_text: 'Build successfully completed by ${{ github.actor }} for `${{ github.ref }}`'
+          failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+          cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
