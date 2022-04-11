@@ -2,9 +2,6 @@ name: notify_slack
 on:
   workflow_call:
     inputs:
-      name:
-        required: true
-        type: string
       success:
         required: true
         type: boolean
@@ -27,6 +24,8 @@ on:
       token:
         required: true
       slack_webhook_url:
+        required: true
+      slack_group_id:
         required: true
 
 jobs:
