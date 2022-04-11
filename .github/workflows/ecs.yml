@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   ecs:
-    name: Check
+    name: check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

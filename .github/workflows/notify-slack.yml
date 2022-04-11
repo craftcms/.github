@@ -29,7 +29,7 @@ on:
         required: true
 jobs:
   notify-on-success:
-    name: On success
+    name: on success
     runs-on: ubuntu-latest
     if: ${{ inputs.success }}
     steps:
@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
   notify-on-failure:
-    name: On failure
+    name: on failure
     runs-on: ubuntu-latest
     if: ${{ ! inputs.success }}
     steps:
