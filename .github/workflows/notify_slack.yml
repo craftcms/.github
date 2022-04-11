@@ -5,6 +5,11 @@ on:
       success:
         required: true
         type: boolean
+    secrets:
+      token:
+        required: true
+      slack_webhook_url:
+        required: true
 
 jobs:
 
@@ -21,8 +26,8 @@ jobs:
           failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
           cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }} # Required
-          SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK_URL }} # Required
+          GITHUB_TOKEN: ${{ secrets.token }} # Required
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }} # Required
 
   notify_failure:
     runs-on: ubuntu-latest
@@ -37,5 +42,5 @@ jobs:
           failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
           cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }} # Required
-          SLACK_WEBHOOK_URL: ${{ env.SLACK_WEBHOOK_URL }} # Required
+          GITHUB_TOKEN: ${{ secrets.token }} # Required
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }} # Required
