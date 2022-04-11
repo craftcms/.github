@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   phpstan:
-    name: Run
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
