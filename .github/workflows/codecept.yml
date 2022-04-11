@@ -3,8 +3,7 @@ on:
   workflow_call:
     inputs:
       php_versions:
-        required: false
-        default: '[]'
+        required: true
         type: string
 concurrency:
   group: ci-${{ github.ref }}
