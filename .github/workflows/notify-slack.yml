@@ -1,4 +1,4 @@
-name: notify_slack
+name: Notify Slack
 on:
   workflow_call:
     inputs:
@@ -27,14 +27,13 @@ on:
         required: true
       slack_group_id:
         required: true
-
 jobs:
-
-  notify_success:
+  notify-on-success:
+    name: Notify Slack on success
     runs-on: ubuntu-latest
     if: ${{ inputs.success }}
     steps:
-      - name: Notify Slack - Success
+      - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
           status: 'success'
@@ -44,12 +43,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
-
-  notify_failure:
+  notify-on-failure:
+    name: Notify Slack on failure
     runs-on: ubuntu-latest
     if: ${{ ! inputs.success }}
     steps:
-      - name: Notify Slack - Failure
+      - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
           status: 'failure'

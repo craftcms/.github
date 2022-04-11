@@ -25,7 +25,7 @@ on:
   pull_request:
 
 concurrency:
-  group: ci-${{ github.ref }}-1
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 env:

@@ -1,28 +1,20 @@
-name: ci
-on:
-  workflow_call:
-  workflow_dispatch:
-  pull_request:
-
+name: ECS
+on: workflow_call
 concurrency:
-  group: ci-${{ github.ref }}-1
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-
   ecs:
+    name: ECS
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
-
       - name: Run ECS checks
         run: vendor/bin/ecs check --ansi
-
-      - name: Cancel current workflow run
+      - name: Cancel current workflow run on failure
         if: ${{ failure() }}
         uses: actions/github-script@v4
         with:
