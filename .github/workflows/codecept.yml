@@ -6,7 +6,7 @@ on:
         required: true
         type: string
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   # Run tests in the matrix
