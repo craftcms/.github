@@ -1,10 +1,28 @@
-name: ci
+name: notify_slack
 on:
   workflow_call:
     inputs:
+      name:
+        required: true
+        type: string
       success:
         required: true
         type: boolean
+      success_text:
+        type: string
+        required: false
+        description: Slack message when succeeded.
+        default: '<https://github.com/${{ github.action_repository }}|${{ github.action_repository }}> build completed successfully for `${{ github.ref_name }}` by @${{ github.actor }}'
+      failure_text:
+        type: string
+        required: false
+        description: Slack message when failed.
+        default: '<!subteam^{{ secrets.slack_group_id }}> <https://github.com/${{ github.action_repository }}|${{ github.action_repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
+      cancelled_text:
+        type: string
+        required: false
+        description: Slack message when cancelled.
+        default: '<https://github.com/${{ github.action_repository }}|${{ github.action_repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
     secrets:
       token:
         required: true
@@ -17,30 +35,28 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.success }}
     steps:
-
       - name: Notify Slack - Success
         uses: innocarpe/actions-slack@v1
         with:
           status: 'success'
-          success_text: 'Build successfully completed by ${{ github.actor }} for `${{ github.ref }}`'
-          failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
-          cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+          success_text: ${{ inputs.success_text }}
+          failure_text: ${{ inputs.failure_text }}
+          cancelled_text: ${{ inputs.cancelled_text }}
         env:
-          GITHUB_TOKEN: ${{ secrets.token }} # Required
-          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }} # Required
+          GITHUB_TOKEN: ${{ secrets.token }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
 
   notify_failure:
     runs-on: ubuntu-latest
     if: ${{ ! inputs.success }}
     steps:
-
       - name: Notify Slack - Failure
         uses: innocarpe/actions-slack@v1
         with:
           status: 'failure'
-          success_text: 'Build successfully completed by ${{ github.actor }} for `${{ github.ref }}`'
-          failure_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
-          cancelled_text: '<!subteam^SGFL9NKNZ> ${{ github.actor }} broke the build for `${{ github.ref }}` 😱' # Optional
+          success_text: ${{ inputs.success_text }}
+          failure_text: ${{ inputs.failure_text }}
+          cancelled_text: ${{ inputs.cancelled_text }}
         env:
-          GITHUB_TOKEN: ${{ secrets.token }} # Required
-          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }} # Required
+          GITHUB_TOKEN: ${{ secrets.token }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
