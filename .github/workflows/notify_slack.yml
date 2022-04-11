@@ -9,17 +9,17 @@ on:
         type: string
         required: false
         description: Slack message when succeeded.
-        default: '<https://github.com/${{ github.repository }}|${{ github.repository }}> build completed successfully for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build completed successfully for `${{ github.ref_name }}` by @${{ github.actor }}'
       failure_text:
         type: string
         required: false
         description: Slack message when failed.
-        default: '<!subteam^{{ secrets.slack_group_id }}> <https://github.com/${{ github.repository }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<!subteam^{{ secrets.slack_group_id }}> <${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
       cancelled_text:
         type: string
         required: false
         description: Slack message when cancelled.
-        default: '<https://github.com/${{ github.repository }}|${{ github.repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
     secrets:
       token:
         required: true
