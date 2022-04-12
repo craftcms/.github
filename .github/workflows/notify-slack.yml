@@ -37,8 +37,6 @@ on:
         required: true
       slack_webhook_url:
         required: true
-      slack_group_id:
-        required: true
 jobs:
   notify-on-success:
     name: on success
