@@ -14,7 +14,7 @@ on:
         type: string
         required: false
         description: Slack message when failed.
-        default: '<!subteam^{{ secrets.slack_group_id }}> <${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '@dev-team <${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
       cancelled_text:
         type: string
         required: false
