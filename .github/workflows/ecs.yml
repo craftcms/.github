@@ -5,6 +5,18 @@ jobs:
     name: check
     runs-on: ubuntu-latest
     steps:
+      - name: Setup PHP
+        id: setup-php
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: 7.2.5
+          extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
+          ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
+          tools: composer:v2
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print PHP version
+        run: echo ${{ steps.setup-php.outputs.php-version }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install Composer dependencies
