@@ -1,10 +1,25 @@
 name: PHPStan
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      minimum_php_version:
+        required: true
+        type: string
 jobs:
   phpstan:
     name: check
     runs-on: ubuntu-latest
     steps:
+      - name: Setup PHP
+        id: setup-php
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: ${{ inputs.minimum_php_version }}
+          extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
+          ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
+          tools: composer:v2
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install Composer dependencies
