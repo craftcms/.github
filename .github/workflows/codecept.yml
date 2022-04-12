@@ -49,7 +49,8 @@ jobs:
       - name: Set test command for the code coverage environment
         run: |
           echo "TEST_COMMAND=./vendor/bin/codecept run unit,functional --fail-fast --coverage-xml coverage.xml;" >> $GITHUB_ENV
-        if: ${{ matrix.php-versions == '8.0' && matrix.db == 'mysql' }}
+          if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ matrix.php-versions == '8.0' && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
       - name: Setup cache environment
         id: extcache
         uses: shivammathur/cache-extensions@257e3c93fb0a7d302495902b976b1d0245123b59
@@ -102,5 +103,5 @@ jobs:
         run: ${{ env.TEST_COMMAND }}
       # Only upload code coverage if PHP 7.4 and MySQL are selected
       - name: Upload coverage to Codecov
-        if: ${{ matrix.php-versions == '7.4' && matrix.db == 'mysql' }}
+        if: ${{ matrix.php-versions == '8.0' && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}}}
         uses: codecov/codecov-action@v2
