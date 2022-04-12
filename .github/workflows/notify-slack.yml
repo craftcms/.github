@@ -33,6 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.success }}
     steps:
+      - name: Debug
+        run: echo ${{ inputs.success }}
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
@@ -48,6 +50,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ ! inputs.success }}
     steps:
+      - name: Debug
+        run: echo ${{ inputs.success }}
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
