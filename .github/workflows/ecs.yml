@@ -1,10 +1,9 @@
 name: ECS
 on:
   workflow_call:
-    inputs:
+    secrets:
       minimum_php_version:
         required: true
-        type: string
 jobs:
   ecs:
     name: check
@@ -14,7 +13,7 @@ jobs:
         id: setup-php
         uses: shivammathur/setup-php@verbose
         with:
-          php-version: ${{ inputs.minimum_php_version }}
+          php-version: ${{ secrets.minimum_php_version }}
           extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
           ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
           tools: composer:v2
