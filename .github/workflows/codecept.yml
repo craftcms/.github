@@ -64,6 +64,7 @@ jobs:
           key: ${{ steps.extcache.outputs.key }}
           restore-keys: ${{ steps.extcache.outputs.key }}
       - name: Setup PHP
+        id: setup-php
         uses: shivammathur/setup-php@verbose
         with:
           php-version: ${{ matrix.php-versions }}
