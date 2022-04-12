@@ -14,12 +14,24 @@ on:
         type: string
         required: false
         description: Slack message when failed.
-        default: '<!subteam^SGFL9NKNZ> <${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
       cancelled_text:
         type: string
         required: false
         description: Slack message when cancelled.
         default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
+      success_text_prefix:
+        type: string
+        required: false
+        description: Text to be prepended to success_text.
+      failure_text_prefix:
+        type: string
+        required: false
+        description: Text to be prepended to failure_text.
+      cancelled_text_prefix:
+        type: string
+        required: false
+        description: Text to be prepended to cancelled_text.
     secrets:
       token:
         required: true
@@ -39,9 +51,9 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: 'success'
-          success_text: ${{ inputs.success_text }}
-          failure_text: ${{ inputs.failure_text }}
-          cancelled_text: ${{ inputs.cancelled_text }}
+          success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
+          failure_text: '${{ inputs.failure_text_prefix }} ${{ inputs.failure_text }}'
+          cancelled_text: '${{ inputs.cancelled_text_prefix }} ${{ inputs.cancelled_text }}'
         env:
           GITHUB_TOKEN: ${{ secrets.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
@@ -56,9 +68,9 @@ jobs:
         uses: innocarpe/actions-slack@v1
         with:
           status: 'failure'
-          success_text: ${{ inputs.success_text }}
-          failure_text: ${{ inputs.failure_text }}
-          cancelled_text: ${{ inputs.cancelled_text }}
+          success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
+          failure_text: '${{ inputs.failure_text_prefix }} ${{ inputs.failure_text }}'
+          cancelled_text: '${{ inputs.cancelled_text_prefix }} ${{ inputs.cancelled_text }}'
         env:
           GITHUB_TOKEN: ${{ secrets.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
