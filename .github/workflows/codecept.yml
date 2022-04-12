@@ -49,7 +49,6 @@ jobs:
       - name: Set test command for the code coverage environment
         run: |
           echo "TEST_COMMAND=./vendor/bin/codecept run unit,functional --fail-fast --coverage-xml coverage.xml;" >> $GITHUB_ENV
-          if: ${{ github.ref == 'refs/heads/main' }}
         if: ${{ matrix.php-versions == '8.0' && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
       - name: Setup cache environment
         id: extcache
