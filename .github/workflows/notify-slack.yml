@@ -9,17 +9,17 @@ on:
         type: string
         required: false
         description: Slack message when succeeded.
-        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build completed successfully for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<https://github.com/${{ github.repository }}|${{ github.repository }}> build completed successfully for `${{ github.ref_name }}` by @${{ github.actor }}'
       failure_text:
         type: string
         required: false
         description: Slack message when failed.
-        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<https://github.com/${{ github.repository }}|${{ github.repository }}> build failed for `${{ github.ref_name }}` by @${{ github.actor }}'
       cancelled_text:
         type: string
         required: false
         description: Slack message when cancelled.
-        default: '<${{ github.repositoryUrl }}|${{ github.repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
+        default: '<https://github.com/${{ github.repository }}|${{ github.repository }}> build was cancelled for `${{ github.ref_name }}` by @${{ github.actor }}'
       success_text_prefix:
         type: string
         required: false
