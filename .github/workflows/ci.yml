@@ -10,6 +10,10 @@ on:
         required: false
         default: false
         type: boolean
+      run_prettier:
+        required: false
+        default: false
+        type: boolean
       run_tests:
         required: false
         default: false
@@ -103,6 +107,47 @@ jobs:
 
       - name: Run PHPStan checks
         run: "vendor/bin/phpstan --memory-limit=2G"
+
+      - name: Cancel current workflow run
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.actions.cancelWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId
+            })
+
+      - name: Slack notification failure
+        uses: ravsamhq/notify-slack-action@v1
+        # Only send Slack notification on failure if it's on a branch
+        if: ${{ ! success() && startsWith(github.ref, 'refs/heads/') }}}}
+        with:
+          status: ${{ job.status }}
+          notification_title: ${{ env.SLACK_NOTIFICATION_TITLE }}
+          message_format: ${{ env.SLACK_NOTIFICATION_MESSAGE_FORMAT }}
+          footer: ${{ env.SLACK_NOTIFICATION_FOOTER }}
+          notify_when: ${{ env.SLACK_NOTIFICATION_ERROR_LEVELS }}
+          mention_groups: ${{ env.SLACK_NOTIFICATION_GROUP_ID }}
+          mention_groups_when: ${{ env.SLACK_NOTIFICATION_ERROR_LEVELS }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
+
+  # Run Prettier checks outside of the matrix
+  prettier:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.run_prettier }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Run Prettier checks
+        run: npx prettier --check .
 
       - name: Cancel current workflow run
         if: ${{ failure() }}
