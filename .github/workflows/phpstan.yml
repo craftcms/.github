@@ -40,13 +40,3 @@ jobs:
         run: "vendor/bin/codecept build"
       - name: Run PHPStan checks
         run: "vendor/bin/phpstan --memory-limit=2G"
-      - name: Cancel current workflow run on failure
-        if: ${{ failure() }}
-        uses: actions/github-script@v4
-        with:
-          script: |
-            github.actions.cancelWorkflowRun({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                run_id: context.runId
-            })

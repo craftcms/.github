@@ -26,13 +26,3 @@ jobs:
         run: composer install --no-interaction --no-ansi --no-progress
       - name: Run ECS checks
         run: vendor/bin/ecs check --ansi
-      - name: Cancel current workflow run on failure
-        if: ${{ failure() }}
-        uses: actions/github-script@v4
-        with:
-          script: |
-            github.actions.cancelWorkflowRun({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                run_id: context.runId
-            })
