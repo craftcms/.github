@@ -49,7 +49,6 @@ jobs:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
-          status: 'success'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
           failure_text: '${{ inputs.failure_text_prefix }} ${{ inputs.failure_text }}'
           cancelled_text: '${{ inputs.cancelled_text_prefix }} ${{ inputs.cancelled_text }}'
@@ -64,7 +63,6 @@ jobs:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
-          status: 'failure'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
           failure_text: '${{ inputs.failure_text_prefix }} ${{ inputs.failure_text }}'
           cancelled_text: '${{ inputs.cancelled_text_prefix }} ${{ inputs.cancelled_text }}'
@@ -79,7 +77,6 @@ jobs:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
         with:
-          status: 'cancelled'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
           failure_text: '${{ inputs.failure_text_prefix }} ${{ inputs.failure_text }}'
           cancelled_text: '${{ inputs.cancelled_text_prefix }} ${{ inputs.cancelled_text }}'
