@@ -11,7 +11,7 @@ on:
         default: '3'
         type: string
       jobs:
-        default: '["ecs"]'
+        default: '["phpstan"]'
         type: string
       notify_slack:
         default: true
@@ -20,31 +20,31 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  ecs:
-    name: ECS
-    if: ${{ contains(fromJSON(inputs.jobs), "ecs") }}
-    uses: ./.github/workflows/ecs.yml
-    with:
-      php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
+#  ecs:
+#    name: ECS
+#    if: ${{ contains(fromJSON(inputs.jobs), "ecs") }}
+#    uses: ./.github/workflows/ecs.yml
+#    with:
+#      php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), "phpstan") }}
-    uses: ./.github/workflows/phpstan.yml
+    uses: ./.github/workflows/phpstan-comp.yml
     with:
       php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
-  prettier:
-    name: Prettier
-    if: ${{ contains(fromJSON(inputs.jobs), "prettier") }}
-    uses: ./.github/workflows/prettier.yml
-  notify-slack:
-    name: Notify Slack
-    needs: ${{ fromJSON(inputs.jobs) }}
-    if: ${{ always() && inputs.notify_slack }}
-    uses: ./.github/workflows/notify-slack.yml
-    with:
-      success: ${{ !contains(needs.*.result, 'failure') }}
-      failure: ${{ contains(needs.*.result, 'failure') }}
-      failure_text_prefix: <!subteam^S01CWPYH9D5>
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      slack_webhook_url: ${{ secrets.SLACK_COMMERCE_WEBHOOK_URL }}
+#  prettier:
+#    name: Prettier
+#    if: ${{ contains(fromJSON(inputs.jobs), "prettier") }}
+#    uses: ./.github/workflows/prettier.yml
+#  notify-slack:
+#    name: Notify Slack
+#    needs: ${{ fromJSON(inputs.jobs) }}
+#    if: ${{ always() && inputs.notify_slack }}
+#    uses: ./.github/workflows/notify-slack.yml
+#    with:
+#      success: ${{ !contains(needs.*.result, 'failure') }}
+#      failure: ${{ contains(needs.*.result, 'failure') }}
+#      failure_text_prefix: <!subteam^S01CWPYH9D5>
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#      slack_webhook_url: ${{ secrets.SLACK_COMMERCE_WEBHOOK_URL }}
