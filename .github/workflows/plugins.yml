@@ -23,24 +23,24 @@ jobs:
   ecs:
     name: ECS
     if: ${{ contains(fromJSON(inputs.jobs), "ecs") }}
-    uses: ./.github/.github/workflows/ecs.yml
+    uses: ./.github/workflows/ecs.yml
     with:
       php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), "phpstan") }}
-    uses: ./.github/.github/workflows/phpstan.yml
+    uses: ./.github/workflows/phpstan.yml
     with:
       php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
   prettier:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), "prettier") }}
-    uses: ./.github/.github/workflows/prettier.yml
+    uses: ./.github/workflows/prettier.yml
   notify-slack:
     name: Notify Slack
     needs: ${{ fromJSON(inputs.jobs) }}
     if: ${{ always() && inputs.notify_slack }}
-    uses: ./.github/.github/workflows/notify-slack.yml
+    uses: ./.github/workflows/notify-slack.yml
     with:
       success: ${{ !contains(needs.*.result, 'failure') }}
       failure: ${{ contains(needs.*.result, 'failure') }}
