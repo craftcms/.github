@@ -1,4 +1,4 @@
-name: ci
+name: Plugins
 
 env:
   CRAFT_PHP_VERSIONS: '{"3": "7.2", "4": "8.0"}'
