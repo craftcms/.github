@@ -99,6 +99,10 @@ jobs:
         run: |
           npm cache clean -f
           npm install -g npm
+      - name: MySQL import timezones
+        if: ${{ matrix.db == 'mysql' }}
+        run: |
+          mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --host=127.0.0.1 --port=3306 --user=root --password=mysecretpassword mysql
       - name: Run tests
         run: ${{ env.TEST_COMMAND }}
       # Only upload code coverage if PHP 7.4 and MySQL are selected
