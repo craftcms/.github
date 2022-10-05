@@ -23,12 +23,12 @@ jobs:
   ecs3:
     name: ECS - Craft 3
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') && inputs.craft_version == '3' }}
-    uses: ./.github/workflows/ecs.yml@plugins
+    uses: ./.github/workflows/ecs.yml
     with:
       php_version: '7.2'
   ecs4:
     name: ECS - Craft 4
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') && inputs.craft_version == '4' }}
-    uses: ./.github/workflows/ecs.yml@plugins
+    uses: ./.github/workflows/ecs.yml
     with:
       php_version: '8.0'
