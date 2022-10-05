@@ -5,6 +5,11 @@ env:
 
 on:
   workflow_call:
+    secrets:
+      token:
+        required: false
+      slack_webhook_url:
+        required: false
     inputs:
       craft_version:
         default: '3'
@@ -50,6 +55,4 @@ jobs:
       success: ${{ !contains(needs.*.result, 'failure') }}
       failure: ${{ contains(needs.*.result, 'failure') }}
       failure_text_prefix: ${{ inputs.slack_subteam }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      slack_webhook_url: ${{ secrets.SLACK_COMMERCE_WEBHOOK_URL }}
+    secrets: inherit
