@@ -6,10 +6,6 @@ env:
 on:
   workflow_call:
     inputs:
-      craft_version:
-        required: true
-        default: '3'
-        type: string
       jobs:
         default: '["ecs"]'
         type: string
