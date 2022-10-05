@@ -46,6 +46,12 @@ jobs:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
     uses: ./.github/workflows/prettier.yml
+  tests:
+    name: Tests
+    if: ${{ contains(fromJSON(inputs.jobs), 'tests') }}
+    uses: ./.github/workflows/codecept.yml
+    with:
+      php_versions: ${{ fromJSON('{"3":["7.2", "7.3", "7.4", "8.0", "8.1"],"4":["8.0", "8.1"]}')[inputs.craft_version] }}
   notify-slack:
     name: Notify Slack
     needs: [ecs, phpstan, prettier]
