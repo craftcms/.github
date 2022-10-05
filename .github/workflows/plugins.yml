@@ -43,7 +43,7 @@ jobs:
     uses: ./.github/workflows/prettier.yml
   notify-slack:
     name: Notify Slack
-    needs: ${{ fromJSON(inputs.jobs) }}
+    needs: [ecs, phpstan, prettier]
     if: ${{ always() && inputs.slack_subteam && inputs.notify_slack }}
     uses: ./.github/workflows/notify-slack.yml
     with:
