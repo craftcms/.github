@@ -44,7 +44,7 @@ jobs:
   notify-slack:
     name: Notify Slack
     needs: ${{ fromJSON(inputs.jobs) }}
-    if: ${{ always() && &&inputs.slack_subteam && inputs.notify_slack }}
+    if: ${{ always() && inputs.slack_subteam && inputs.notify_slack }}
     uses: ./.github/workflows/notify-slack.yml
     with:
       success: ${{ !contains(needs.*.result, 'failure') }}
