@@ -9,6 +9,9 @@ on:
       craft_version:
         default: '3'
         type: string
+      php_version:
+        default: '8.0'
+        type: string
       jobs:
         default: '["ecs"]'
         type: string
@@ -20,14 +23,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   ecs3:
-    name: ECS - Craft 3
-    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') && inputs.craft_version == '3' }}
+    name: ECS
+    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
     with:
-      php_version: '7.2'
-  ecs4:
-    name: ECS - Craft 4
-    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') && inputs.craft_version == '4' }}
-    uses: ./.github/workflows/ecs.yml
-    with:
-      php_version: '8.0'
+      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0"}')[inputs.craft_version] || inputs.php_version }}
