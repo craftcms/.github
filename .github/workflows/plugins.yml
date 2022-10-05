@@ -20,33 +20,15 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  ecs:
+  ecs3:
     name: ECS
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
-    env:
-      CRAFT_PHP: '{"3": "7.2", "4": "8.0"}'
     with:
-      php_version: ${{ fromJSON(env.CRAFT_PHP)[inputs.craft_version] }}
-  phpstan:
-    name: PHPStan
-    if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
-    uses: ./.github/workflows/phpstan.yml
+      php_version: '7.2'
+  ecs4:
+    name: ECS
+    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
+    uses: ./.github/workflows/ecs.yml
     with:
-      php_version: ${{ fromJSON(env.CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
-  prettier:
-    name: Prettier
-    if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
-    uses: ./.github/workflows/prettier.yml
-  notify-slack:
-    name: Notify Slack
-    needs: ${{ fromJSON(inputs.jobs) }}
-    if: ${{ always() && inputs.notify_slack }}
-    uses: ./.github/workflows/notify-slack.yml
-    with:
-      success: ${{ !contains(needs.*.result, 'failure') }}
-      failure: ${{ contains(needs.*.result, 'failure') }}
-      failure_text_prefix: <!subteam^S01CWPYH9D5>
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      slack_webhook_url: ${{ secrets.SLACK_COMMERCE_WEBHOOK_URL }}
+      php_version: '8.0'
