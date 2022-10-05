@@ -25,13 +25,13 @@ jobs:
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
     with:
-      php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
+      php_version: ${{ fromJSON(env.CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
     uses: ./.github/workflows/phpstan.yml
     with:
-      php_version: ${{ fromJSON($CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
+      php_version: ${{ fromJSON(env.CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
   prettier:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
