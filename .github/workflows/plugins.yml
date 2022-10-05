@@ -24,8 +24,10 @@ jobs:
     name: ECS
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
+    env:
+      CRAFT_PHP: '{"3": "7.2", "4": "8.0"}'
     with:
-      php_version: ${{ fromJSON(env.CRAFT_PHP_VERSIONS)[inputs.craft_version] }}
+      php_version: ${{ fromJSON(env.CRAFT_PHP)[inputs.craft_version] }}
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
