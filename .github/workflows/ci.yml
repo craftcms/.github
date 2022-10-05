@@ -10,6 +10,8 @@ on:
         required: false
       slack_webhook_url:
         required: false
+      slack_subteam:
+        required: false
     inputs:
       craft_version:
         default: '3'
