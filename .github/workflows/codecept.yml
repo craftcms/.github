@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest']
-        php-versions: ${{ fromJSON(inputs.php_versions) }}
+        php-versions: ${{ inputs.php_versions }}
         db: ['mysql', 'pgsql']
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.db }}
     env:
