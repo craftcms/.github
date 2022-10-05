@@ -9,7 +9,7 @@ on:
 
 jobs:
   ecs:
-    name: check
+    name: ECS
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP

@@ -7,7 +7,7 @@ on:
         type: string
 jobs:
   phpstan:
-    name: check
+    name: PHPStan
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP
