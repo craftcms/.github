@@ -19,7 +19,7 @@ on:
         default: true
         type: boolean
       slack_subteam:
-        default: '<!subteam^SGFL9NKNZ>'
+        default: <!subteam^SGFL9NKNZ>
         type: string
 concurrency:
   group: ci-plugins-${{ github.ref }}
