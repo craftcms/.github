@@ -1,4 +1,4 @@
-name: Plugins
+name: Code Quality
 
 on:
   workflow_call:
@@ -9,9 +9,6 @@ on:
       jobs:
         default: '["ecs"]'
         type: string
-concurrency:
-  group: ci-global-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   ecs:
     name: ECS
