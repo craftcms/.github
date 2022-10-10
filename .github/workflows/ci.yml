@@ -1,0 +1,65 @@
+name: Plugins
+
+env:
+  CRAFT_PHP_VERSIONS: '{"3": "7.2", "4": "8.0"}'
+
+on:
+  workflow_call:
+    secrets:
+      token:
+        required: false
+      slack_webhook_url:
+        required: false
+    inputs:
+      craft_version:
+        default: '3'
+        type: string
+      php_version:
+        default: '8.0'
+        type: string
+      jobs:
+        default: '["ecs"]'
+        type: string
+      notify_slack:
+        default: false
+        type: boolean
+      slack_subteam:
+        default: ''
+        type: string
+concurrency:
+  group: ci-global-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  ecs:
+    name: ECS
+    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
+    uses: ./.github/workflows/ecs.yml
+    with:
+      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0"}')[inputs.craft_version] || inputs.php_version }}
+  phpstan:
+    name: PHPStan
+    if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
+    uses: ./.github/workflows/phpstan.yml
+    with:
+      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0"}')[inputs.craft_version] || inputs.php_version }}
+  prettier:
+    name: Prettier
+    if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
+    uses: ./.github/workflows/prettier.yml
+  tests:
+    name: Tests
+    needs: [ecs, phpstan]
+    if: ${{ contains(fromJSON(inputs.jobs), 'tests') }}
+    uses: ./.github/workflows/codecept.yml
+    with:
+      php_versions: ${{ toJSON(fromJSON('{"3":["7.2", "7.3", "7.4", "8.0", "8.1"],"4":["8.0", "8.1"]}')[inputs.craft_version]) }}
+  notify-slack:
+    name: Notify Slack
+    needs: [ecs, phpstan, prettier, tests]
+    if: ${{ always() && inputs.slack_subteam && inputs.notify_slack }}
+    uses: ./.github/workflows/notify-slack.yml
+    with:
+      success: ${{ !contains(needs.*.result, 'failure') }}
+      failure: ${{ contains(needs.*.result, 'failure') }}
+      failure_text_prefix: ${{ inputs.slack_subteam }}
+    secrets: inherit

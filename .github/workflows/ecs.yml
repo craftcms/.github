@@ -1,13 +1,15 @@
 name: ECS
+
 on:
   workflow_call:
     inputs:
       php_version:
         required: true
         type: string
+
 jobs:
   ecs:
-    name: check
+    name: ECS
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP
@@ -20,9 +22,12 @@ jobs:
           tools: composer:v2
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
+
       - name: Run ECS checks
         run: vendor/bin/ecs check --ansi
