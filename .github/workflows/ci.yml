@@ -1,8 +1,5 @@
 name: Plugins
 
-env:
-  CRAFT_PHP_VERSIONS: '{"3": "7.2", "4": "8.0"}'
-
 on:
   workflow_call:
     secrets:
