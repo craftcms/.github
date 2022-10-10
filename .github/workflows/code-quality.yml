@@ -1,0 +1,28 @@
+name: Code Quality
+
+on:
+  workflow_call:
+    inputs:
+      php_version:
+        default: '8.0'
+        type: string
+      jobs:
+        default: '["ecs"]'
+        type: string
+jobs:
+  ecs:
+    name: ECS
+    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
+    uses: ./.github/workflows/ecs.yml
+    with:
+      php_version: ${{ inputs.php_version }}
+  phpstan:
+    name: PHPStan
+    if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
+    uses: ./.github/workflows/phpstan.yml
+    with:
+      php_version: ${{ inputs.php_version }}
+  prettier:
+    name: Prettier
+    if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
+    uses: ./.github/workflows/prettier.yml
