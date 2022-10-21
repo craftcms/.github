@@ -52,7 +52,7 @@ jobs:
         if: ${{ matrix.php-versions == '8.0' && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
       - name: Setup cache environment
         id: extcache
-        uses: shivammathur/cache-extensions@257e3c93fb0a7d302495902b976b1d0245123b59
+        uses: shivammathur/cache-extensions@v1
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ${{ env.PHP_EXTENSIONS }}
@@ -65,7 +65,7 @@ jobs:
           restore-keys: ${{ steps.extcache.outputs.key }}
       - name: Setup PHP
         id: setup-php
-        uses: shivammathur/setup-php@verbose
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ${{ env.PHP_EXTENSIONS }}
