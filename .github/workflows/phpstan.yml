@@ -38,7 +38,5 @@ jobs:
       - name: Build Codeception support files
         if: ${{ steps.check_files.outputs.files_exists == 'true' }}
         run: "vendor/bin/codecept build"
-      - name: Check PHP version
-        run: "php -v"
       - name: Run PHPStan checks
-        run: "php vendor/bin/phpstan --memory-limit=2G"
+        run: "vendor/bin/phpstan --memory-limit=2G"
