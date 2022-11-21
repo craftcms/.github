@@ -40,7 +40,7 @@ jobs:
     if: ${{ contains(fromJSON(inputs.jobs), 'tests') }}
     uses: ./.github/workflows/codecept.yml
     with:
-      php_versions: ${{ toJSON(fromJSON('{"3":["7.2", "7.3", "7.4", "8.0", "8.1"],"4":["8.0", "8.1"],"5":["8.1"]}')[inputs.craft_version]) }}
+      php_versions: ${{ toJSON(fromJSON('{"3":["7.2", "7.3", "7.4", "8.0", "8.1"],"4":["8.0", "8.1"],"5":["8.1"]}')[inputs.craft_version] || [inputs.php_version]) }}
   notify-slack:
     name: Notify Slack
     needs: [code-quality, tests]
