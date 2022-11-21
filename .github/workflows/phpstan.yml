@@ -41,4 +41,4 @@ jobs:
       - name: Check PHP version
         run: "php -v"
       - name: Run PHPStan checks
-        run: "vendor/bin/phpstan --memory-limit=2G"
+        run: "php vendor/bin/phpstan --memory-limit=2G"
