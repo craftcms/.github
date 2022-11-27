@@ -44,7 +44,7 @@ jobs:
   notify-slack:
     name: Notify Slack
     needs: [code-quality, tests]
-    if: ${{ always() && inputs.slack_subteam && inputs.notify_slack }}
+    if: ${{ always() && inputs.slack_subteam && inputs.notify_slack && github.event_name != 'pull_request' }}
     uses: ./.github/workflows/notify-slack.yml
     with:
       success: ${{ !contains(needs.*.result, 'failure') }}
