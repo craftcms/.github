@@ -44,7 +44,7 @@ jobs:
   notify-on-success:
     name: on success
     runs-on: ubuntu-latest
-    if: ${{ inputs.success && github.event_name != 'pull_request' }}
+    if: ${{ inputs.success }}
     steps:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
@@ -59,7 +59,7 @@ jobs:
   notify-on-failure:
     name: on failure
     runs-on: ubuntu-latest
-    if: ${{ inputs.failure && github.event_name != 'pull_request' }}}}
+    if: ${{ inputs.failure }}
     steps:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
@@ -74,7 +74,7 @@ jobs:
   notify-on-cancelled:
     name: on cancelled
     runs-on: ubuntu-latest
-    if: ${{ !inputs.success && !inputs.failure && github.event_name != 'pull_request' }} }}
+    if: ${{ !inputs.success && !inputs.failure }}
     steps:
       - name: Notify Slack
         uses: innocarpe/actions-slack@v1
