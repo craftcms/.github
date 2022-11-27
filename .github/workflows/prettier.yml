@@ -13,5 +13,8 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install node deps
+        run: npm ci
+
       - name: Run Prettier checks
         run: npx prettier --check .
