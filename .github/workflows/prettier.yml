@@ -17,13 +17,13 @@ jobs:
 
       - name: Setup node nvmrc
         if: ${{ steps.check_files.outputs.files_exists == 'true' }}
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
 
       - name: Setup node explicit
         if: ${{ steps.check_files.outputs.files_exists == 'false' }}
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
 
