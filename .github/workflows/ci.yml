@@ -14,6 +14,9 @@ on:
       php_version:
         default: '8.0'
         type: string
+      node_version:
+        default: '16'
+        type: string
       jobs:
         default: '["ecs"]'
         type: string
@@ -34,6 +37,7 @@ jobs:
     with:
       php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.1"}')[inputs.craft_version] || inputs.php_version }}
       jobs: ${{ inputs.jobs }}
+      node_version: ${{ inputs.node_version }}
   tests:
     name: Tests
     needs: [code-quality]

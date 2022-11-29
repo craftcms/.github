@@ -6,6 +6,9 @@ on:
       php_version:
         default: '8.0'
         type: string
+      node_version:
+        default: '16'
+        type: string
       jobs:
         default: '["ecs"]'
         type: string
@@ -26,3 +29,5 @@ jobs:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
     uses: ./.github/workflows/prettier.yml
+    with:
+      node_version: ${{ inputs.node_version }}

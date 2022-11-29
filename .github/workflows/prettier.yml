@@ -1,6 +1,11 @@
 name: Prettier
 on:
   workflow_call:
+    inputs:
+      node_version:
+        required: true
+        type: string
+
 jobs:
   prettier:
     name: check
@@ -9,23 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Check if .nvmrc exists
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ".nvmrc"
-
-      - name: Setup node nvmrc
-        if: ${{ steps.check_files.outputs.files_exists == 'true' }}
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
-
-      - name: Setup node explicit
-        if: ${{ steps.check_files.outputs.files_exists == 'false' }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+          node-version: ${{ inputs.node_version }}
 
       - name: Install node deps
         run: npm ci
