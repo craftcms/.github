@@ -13,7 +13,7 @@ The broader Craft ecosystem features:
 
 - Dedicated support across three continents with available [paid priority and enterprise plans](https://craftcms.com/support-services).
 - A first-party [ecommerce platform](https://craftcms.com/commerce).
-- A free first-party [local development environment](https://getnitro.sh/).
+- A recommended and supported [local development environment](https://ddev.com/).
 - A [plugin store](https://plugins.craftcms.com/) with hundreds of free and commercial plugins.
 - A vibrant [professional community](https://craftcms.com/community).
 
