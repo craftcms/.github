@@ -52,8 +52,7 @@ We are only interested in reports directly from the security researcher that dis
 - Any behavior that is clearly documented
 - Issues discovered while scanning a site you don’t own without permission
 - Missing CSRF tokens on forms (unless you have a proof of concept, many forms either don’t need CSRF or are mitigated in other ways) and “logout” CSRF attacks
-- [Open redirects](https://www.owasp.org/index.php/open_redirect)
-
+- [Open redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
 ## Bounties
 
 To show our appreciation for the work it can take to find and report a vulnerability, we’re happy to offer researchers a monetary reward.
