@@ -24,8 +24,8 @@ The broader Craft ecosystem features:
 - [Documentation](https://craftcms.com/docs/) – Read the official docs.
 - [Knowledge Base](https://craftcms.com/knowledge-base) – Find answers to common problems.
 - [Twitter](https://twitter.com/hashtag/craftcms) – See the latest tweets about Craft.
+- [Newsletter](https://craftcms.com/newsletter/) – Stay in the loop.
 - [Discord](https://craftcms.com/discord) – Meet the community.
 - [Stack Exchange](http://craftcms.stackexchange.com/) – Get help and help others.
 - [CraftQuest](https://craftquest.io/) – Watch video lessons and courses.
-- [Craft Link List](http://craftlinklist.com/) – Stay in the loop.
 - [nystudio107 Blog](https://nystudio107.com/blog) – Learn Craft and modern web development.
