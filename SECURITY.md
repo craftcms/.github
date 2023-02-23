@@ -33,7 +33,7 @@ We are only interested in reports directly from the security researcher that dis
 
 - Reports from automated tools or scanners
 - Theoretical attacks without proof of exploitability
-- Attacks that can be guarded against by following our [security recommendations](https://craftcms.com/guides/securing-craft).
+- Attacks that can be guarded against by following our [security recommendations](https://craftcms.com/knowledge-base/securing-craft).
 - Server configuration issues outside of Craft’s control
 - [Denial of Service](https://en.wikipedia.org/wiki/Denial-of-service_attack) attacks
 - [Brute force attacks](https://en.wikipedia.org/wiki/Brute-force_attack) (e.g. on password or token hashes)
