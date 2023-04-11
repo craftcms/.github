@@ -1,3 +1,5 @@
+![Craft CMS logo](https://craftcms.com/craftcms.svg)
+
 Craft is a flexible, user-friendly CMS for creating custom digital experiences on the web and beyond.
 
 People love Craft for its…
