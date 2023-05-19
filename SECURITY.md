@@ -9,14 +9,14 @@ If you discover a security vulnerability, please review these guidelines before 
 While working to identify potential security vulnerabilities, we ask that you:
 
 - Share any issues you discover with us via [our website](https://craftcms.com/contact) as soon as possible.
-- Give us a reasonable amount of time to address any reported issues before publicizing them.
-- Only report issues that are [in scope](#scope).
+- Give us reasonable time to address and release any fixes for reported issues before publicizing them. Preferably 30 days.
+- Only report issues [in scope](#scope).
 - Provide a quality report with precise explanations and concrete attack scenarios.
-- Make sure you’re aware of the versions of Craft and Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions).
+- Ensure you’re aware of the versions of Craft and Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions).
 
 ## Scope
 
-We are only interested in vulnerabilities that affect Craft or [first party Craft plugins](https://github.com/craftcms), tested against **your own local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation that you don’t own, including [craftcms.com](https://craftcms.com).
+We are only interested in vulnerabilities that affect Craft or [first-party Craft plugins](https://github.com/craftcms), tested against **your local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation you don’t own, including [craftcms.com](https://craftcms.com).
 
 We are only interested in reports directly from the security researcher that discovered them, not from third-party bug bounty programs.
 
@@ -40,27 +40,28 @@ We are only interested in reports directly from the security researcher that dis
 - Username or email address enumeration
 - Social engineering of Pixel & Tonic staff or users of Craft installations
 - Physical attacks against Craft installations
-- Attacks involving physical access to a user’s device, or involving a device or network that’s already seriously compromised (e.g. [man-in-the-middle attacks](https://en.wikipedia.org/wiki/Man-in-the-middle_attack))
-- Attacks that are the result of a third party Craft plugin should be reported to the plugin’s author
-- Attacks that are the result of a third party library should be reported to the library maintainers
-- Bugs that rely on an unlikely user interaction (i.e. the user effectively attacking themselves)
+- Attacks involving physical access to a user’s device or involving a device or network that’s already seriously compromised (e.g. [man-in-the-middle attacks](https://en.wikipedia.org/wiki/Man-in-the-middle_attack))
+- Attacks that are the result of a third-party Craft plugin should be reported to the plugin’s author
+- Attacks that are the result of a third-party library should be reported to the library maintainers
+- Bugs that rely on unlikely user interactions (i.e., the user effectively attacking themselves)
 - Disclosure of tools or libraries used by Craft and/or their versions
-- Issues that are the result of a user clearly ignoring common security best practices (like sharing their password publicly)
-- Missing security headers which do not lead directly to a vulnerability via proof of concept
+- Issues that are the result of a user ignoring common security best practices (like sharing their password publicly)
+- Missing security headers that do not lead directly to a vulnerability via proof of concept
 - Vulnerabilities affecting users of outdated/unsupported browsers or platforms
 - Vulnerabilities affecting outdated versions of Craft
 - Any behavior that is clearly documented
 - Issues discovered while scanning a site you don’t own without permission
 - Missing CSRF tokens on forms (unless you have a proof of concept, many forms either don’t need CSRF or are mitigated in other ways) and “logout” CSRF attacks
 - [Open redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
+
 ## Bounties
 
-To show our appreciation for the work it can take to find and report a vulnerability, we’re happy to offer researchers a monetary reward.
+We're happy to offer researchers a monetary reward to show our appreciation for the work it can take to find and report a vulnerability.
 
-Reward amounts vary depending upon the severity. Our minimum reward for a qualifying vulnerability report is $50 USD and we expect to pay $500+ USD for major vulnerabilities.
+Reward amounts vary depending on the severity. Our minimum reward for a qualifying vulnerability report is $50 USD, and we expect to pay $500+ USD for major vulnerabilities.
 
 A report will qualify for a bounty if:
 
 - Our [Guidelines](#guidelines) have been followed in full.
-- The vulnerability was previously unknown to us, or your report provides more information or shows the vulnerability to be more extensive than we originally thought.
+- The vulnerability was previously unknown to us, or your report provides more information or shows the vulnerability to be more extensive than we initially thought.
 - The vulnerability is non-trivial.
