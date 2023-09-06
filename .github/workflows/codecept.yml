@@ -11,9 +11,9 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest']
+        operating-system: ["ubuntu-latest"]
         php-versions: ${{ fromJSON(inputs.php_versions) }}
-        db: ['mysql', 'pgsql']
+        db: ["mysql", "pgsql"]
     name: PHP ${{ matrix.php-versions }} on ${{ matrix.db }}
     env:
       PHP_EXTENSIONS: ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip
@@ -89,16 +89,8 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Set Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
-      - name: Install NPM dependencies
-        run: |
-          npm cache clean -f
-          npm install -g npm
       - name: MySQL import timezones
         if: ${{ matrix.db == 'mysql' }}
         run: |
