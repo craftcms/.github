@@ -1,5 +1,9 @@
 # Security Policy
 
+## Products Covered
+
+This security policy covers Craft CMS, Craft Commerce, Craft Cloud, and Pixel & Tonic 1st-party plugins.
+
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability, please review these guidelines before submitting a report. We take security seriously and do our best to resolve security issues as quickly as possible.
@@ -8,17 +12,25 @@ If you discover a security vulnerability, please review these guidelines before 
 
 While working to identify potential security vulnerabilities, we ask that you:
 
-- Share any issues you discover with us via [our website](https://craftcms.com/contact) as soon as possible.
+- Share any issues you discover with us via [our website](https://craftcms.com/contact), support@craftcms.com, or support@craft.cloud as soon as possible.
 - Give us reasonable time to address and release any fixes for reported issues before publicizing them. Preferably 30 days.
 - Only report issues [in scope](#scope).
 - Provide a quality report with precise explanations and concrete attack scenarios.
-- Ensure you’re aware of the versions of Craft and Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions).
+- Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receive security fixes.
 
 ## Scope
 
-We are only interested in vulnerabilities that affect Craft or [first-party Craft plugins](https://github.com/craftcms), tested against **your local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation you don’t own, including [craftcms.com](https://craftcms.com).
+### Craft CMS, Craft Commerce, and plugins
 
-We are only interested in reports directly from the security researcher that discovered them, not from third-party bug bounty programs.
+We are interested in vulnerabilities that affect Craft or [first-party Craft plugins](https://github.com/craftcms), tested against **your local installation of the software**. You can install a local copy of Craft by following these [installation instructions](https://craftcms.com/docs/installing). Do **not** test against any Craft installation you don’t own, including [craftcms.com](https://craftcms.com).
+
+### Craft Cloud
+
+We are interested in infrastructure-related vulnerabilities found on Craft Cloud.
+
+Do **not** test against any Craft Cloud site you don’t own, and do **not** perform any tests that degrade the Craft Cloud’s services.
+
+We are only interested in reports directly from the security researcher who discovered them, not from third-party bug bounty programs.
 
 ### Qualifying Vulnerabilities
 
@@ -56,9 +68,9 @@ We are only interested in reports directly from the security researcher that dis
 
 ## Bounties
 
-We're happy to offer researchers a monetary reward to show our appreciation for the work it can take to find and report a vulnerability.
+We’re happy to offer researchers a monetary reward to show our appreciation for the work it can take to find and report a vulnerability.
 
-Reward amounts vary depending on the severity. Our minimum reward for a qualifying vulnerability report is $50 USD, and we expect to pay $500+ USD for major vulnerabilities.
+Reward amounts vary depending on the severity. Our minimum reward for a qualifying vulnerability report is $50 USD, and we expect to pay $500+ USD for significant vulnerabilities.
 
 A report will qualify for a bounty if:
 
