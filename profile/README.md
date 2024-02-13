@@ -30,9 +30,17 @@ The broader Craft ecosystem features:
 - [Tutorial](https://craftcms.com/docs/getting-started-tutorial/) – Learn the basics.
 - [Documentation](https://craftcms.com/docs/) – Read the official docs.
 - [Knowledge Base](https://craftcms.com/knowledge-base) – Find answers to common problems.
-- [Twitter](https://twitter.com/hashtag/craftcms) – See the latest tweets about Craft.
+- [Mastodon](https://masto.craftcms.com/@craftcms) – See the latest posts about Craft.
 - [Newsletter](https://craftcms.com/newsletter/) – Stay in the loop.
 - [Discord](https://craftcms.com/discord) – Meet the community.
-- [Stack Exchange](http://craftcms.stackexchange.com/) – Get help and help others.
+- [Craft Stack Exchange](http://craftcms.stackexchange.com/) – Get help and help others.
 - [CraftQuest](https://craftquest.io/) – Watch video lessons and courses.
-- [nystudio107 Blog](https://nystudio107.com/blog) – Learn Craft and modern web development.
+- [Developer Support Services](https://craftcms.com/support-services) – Priority developer support from the team that makes Craft.
+- [Craft CMS Feature Requests](https://github.com/craftcms/cms/discussions/new?category=ideas) – Feature requests or enhancements for Craft CMS
+- [Craft Console / Plugin Store Feature Requests](https://github.com/craftcms/console/discussions/new?category=ideas) – Feature requests or enhancements for Craft Console or the Plugin Store
+- [Craft Cloud Feature Requests](https://github.com/craftcms/cloud/discussions/new?category=ideas) – Feature requests or enhancements for Craft Cloud
+- [Craft Commerce Feature Requests](https://github.com/craftcms/commerce/discussions/new?category=ideas) – Feature requests or enhancements for Craft Commerce
+- [Craft CMS Bug Reports](https://github.com/craftcms/cms/issues/new/choose) – Create a bug report for Craft CMS
+- [Craft Console / Plugin Store Bug Reports](https://github.com/craftcms/console/issues/new/choose) – Create a bug report for Craft Console / Plugin Store
+- [Craft Cloud Bug Reports](https://craftcms.com/contact) – Create a bug report for Craft Cloud
+- [Craft Commerce Bug Reports](https://github.com/craftcms/commerce/issues/new/choose) – Create a bug report for Craft Commerce
