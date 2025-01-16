@@ -69,7 +69,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ${{ env.PHP_EXTENSIONS }}
-          ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
+          # error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
+          ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M, error_reporting=6143
           ini-file: development
           tools: composer:v2
         env:
