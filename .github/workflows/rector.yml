@@ -1,28 +1,25 @@
-name: ECS
-
+name: Rector
 on:
   workflow_call:
-    inputs:
-      php_version:
-        required: true
-        type: string
 
 jobs:
-  ecs:
-    name: ECS
+  rector:
+    name: Rector
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP
         id: setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ inputs.php_version }}
+          # PHP 8.2 is required, so Rector's code is PHP 8.2 compatible
+          php-version: 8.2
+          coverage: none
           extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
           ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
           ini-file: development
           tools: composer:v2
-        env:
-          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,5 +27,5 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
 
-      - name: Run ECS checks
-        run: vendor/bin/ecs check --ansi
+      - name: Run Rector
+        run: vendor/bin/rector process --dry-run --ansi

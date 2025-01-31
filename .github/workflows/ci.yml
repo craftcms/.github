@@ -32,7 +32,7 @@ concurrency:
 jobs:
   code-quality:
     name: Code Quality
-    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') || contains(fromJSON(inputs.jobs), 'phpstan') || contains(fromJSON(inputs.jobs), 'prettier') }}
+    if: ${{ contains(fromJSON(inputs.jobs), 'ecs') || contains(fromJSON(inputs.jobs), 'phpstan') || contains(fromJSON(inputs.jobs), 'prettier')  || contains(fromJSON(inputs.jobs), 'rector')}}
     uses: ./.github/workflows/code-quality.yml
     with:
       php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2"}')[inputs.craft_version] || inputs.php_version }}

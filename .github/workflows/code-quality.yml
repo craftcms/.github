@@ -31,3 +31,7 @@ jobs:
     uses: ./.github/workflows/prettier.yml
     with:
       node_version: ${{ inputs.node_version }}
+  rector:
+    name: Rector
+    if: ${{ contains(fromJSON(inputs.jobs), 'rector') }}
+    uses: ./.github/workflows/rector.yml

@@ -22,7 +22,7 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
       - name: Check .env.example.mysql exists
