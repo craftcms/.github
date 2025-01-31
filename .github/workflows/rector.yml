@@ -18,8 +18,8 @@ jobs:
           ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
           ini-file: development
           tools: composer:v2
-          env:
-            COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v4
