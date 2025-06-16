@@ -23,6 +23,15 @@ jobs:
           tools: composer:v2
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMPOSER_AUTH_JSON: |
+            {
+              "http-basic": {
+                "repo.packagist.com": {
+                  "username": "${{ secrets.PACKAGIST_USERNAME }}",
+                  "password": "${{ secrets.PACKAGIST_TOKEN }}"
+                }
+              }
+            }
 
       - name: Checkout
         uses: actions/checkout@v4
