@@ -26,6 +26,7 @@ jobs:
     uses: ./.github/workflows/phpstan.yml
     with:
       php_version: ${{ inputs.php_version }}
+    secrets: inherit
   prettier:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
