@@ -7,6 +7,10 @@ on:
         required: false
       slack_webhook_url:
         required: false
+      packagist_username:
+        required: false
+      packagist_token:
+        required: false
     inputs:
       craft_version:
         default: '3'
