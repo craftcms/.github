@@ -27,8 +27,8 @@ jobs:
             {
               "http-basic": {
                 "repo.packagist.com": {
-                  "username": "${{ secrets.PACKAGIST_USERNAME }}",
-                  "password": "${{ secrets.PACKAGIST_TOKEN }}"
+                  "username": "${{ secrets.packagist_username }}",
+                  "password": "${{ secrets.packagist_token }}"
                 }
               }
             }
