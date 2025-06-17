@@ -1,6 +1,11 @@
 name: PHPStan
 on:
   workflow_call:
+    secrets:
+      packagist_username:
+        required: false
+      packagist_token:
+        required: false
     inputs:
       php_version:
         required: true

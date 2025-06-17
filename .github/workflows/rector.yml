@@ -1,6 +1,11 @@
 name: Rector
 on:
   workflow_call:
+    secrets:
+      packagist_username:
+        required: false
+      packagist_token:
+        required: false
 
 jobs:
   rector:
