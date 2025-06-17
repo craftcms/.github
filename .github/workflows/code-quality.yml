@@ -19,6 +19,7 @@ jobs:
     uses: ./.github/workflows/ecs.yml
     with:
       php_version: ${{ inputs.php_version }}
+    secrets: inherit
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
@@ -35,3 +36,4 @@ jobs:
     name: Rector
     if: ${{ contains(fromJSON(inputs.jobs), 'rector') }}
     uses: ./.github/workflows/rector.yml
+    secrets: inherit

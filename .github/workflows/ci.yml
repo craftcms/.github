@@ -42,6 +42,7 @@ jobs:
       php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2"}')[inputs.craft_version] || inputs.php_version }}
       jobs: ${{ inputs.jobs }}
       node_version: ${{ inputs.node_version }}
+    secrets: inherit
   tests:
     name: Tests
     needs: [code-quality]
@@ -49,6 +50,7 @@ jobs:
     uses: ./.github/workflows/codecept.yml
     with:
       php_versions: ${{ toJSON(fromJSON('{"3":["7.2","7.3","7.4","8.0","8.1"],"4":["8.0","8.1","8.2","8.3","8.4"],"5":["8.2","8.3","8.4"]}')[inputs.craft_version] || inputs.php_version) }}
+    secrets: inherit
   notify-slack:
     name: Notify Slack
     needs: [code-quality, tests]
