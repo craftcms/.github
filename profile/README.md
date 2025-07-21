@@ -14,15 +14,15 @@ People love Craft for its…
 - …auto-generated GraphQL API for headless applications;
 - …cloud-ready, portable architecture and storage options;
 - …simple and generous [license](https://craftcms.com/license), without content or user limits;
-- …active, vibrant [community](https://craftcms.com/community);
+- …active, vibrant [professional community](https://craftcms.com/community) and [partner directory](https://craftcms.com/partners);
 
-The broader Craft ecosystem features:
+The Craft ecosystem is comprised of…
 
-- Dedicated support across three continents with available [priority and enterprise plans](https://craftcms.com/support-services).
-- A first-party [ecommerce platform](https://craftcms.com/commerce).
-- A recommended and supported [local development environment](https://ddev.com/).
-- A [plugin store](https://plugins.craftcms.com/) with hundreds of free and commercial plugins.
-- A vibrant [professional community](https://craftcms.com/community).
+- …our own serverless hosting platform, [Craft Cloud](https://craftcms.com/cloud);
+- …dedicated support engineers across three continents with available [priority and enterprise plans](https://craftcms.com/support-services);
+- …a first-party ecommerce framework, [Craft Commerce](https://craftcms.com/commerce);
+- …a containerized local development environment, [DDEV](https://ddev.com/);
+- …the official [Plugin Store](https://plugins.craftcms.com/) with hundreds of free and commercial plugins;
 
 ## Resources
 
