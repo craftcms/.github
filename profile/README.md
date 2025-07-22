@@ -36,10 +36,10 @@ The Craft ecosystem is comprised of…
 - [Craft Stack Exchange](http://craftcms.stackexchange.com/) – Get help and help others.
 - [CraftQuest](https://craftquest.io/) – Watch video lessons and courses.
 - [Developer Support Services](https://craftcms.com/support-services) – Priority developer support from the team that makes Craft.
-- [Craft CMS Feature Requests](https://github.com/craftcms/cms/discussions/new?category=ideas) – Feature requests or enhancements for Craft CMS
-- [Craft Console / Plugin Store Feature Requests](https://github.com/craftcms/console/discussions/new?category=ideas) – Feature requests or enhancements for Craft Console or the Plugin Store
-- [Craft Cloud Feature Requests](https://github.com/craftcms/cloud/discussions/new?category=ideas) – Feature requests or enhancements for Craft Cloud
-- [Craft Commerce Feature Requests](https://github.com/craftcms/commerce/discussions/new?category=ideas) – Feature requests or enhancements for Craft Commerce
+- [Craft CMS Feature Requests](https://github.com/craftcms/cms/discussions/new/choose) – Feature requests or enhancements for Craft CMS
+- [Craft Console / Plugin Store Feature Requests](https://github.com/craftcms/console/discussions/new/choose) – Feature requests or enhancements for Craft Console or the Plugin Store
+- [Craft Cloud Feature Requests](https://github.com/craftcms/cloud/discussions/new/choose) – Feature requests or enhancements for Craft Cloud
+- [Craft Commerce Feature Requests](https://github.com/craftcms/commerce/discussions/new/choose) – Feature requests or enhancements for Craft Commerce
 - [Craft CMS Bug Reports](https://github.com/craftcms/cms/issues/new/choose) – Create a bug report for Craft CMS
 - [Craft Console / Plugin Store Bug Reports](https://github.com/craftcms/console/issues/new/choose) – Create a bug report for Craft Console / Plugin Store
 - [Craft Cloud Bug Reports](https://craftcms.com/contact) – Create a bug report for Craft Cloud
