@@ -16,8 +16,8 @@ jobs:
         id: setup-php
         uses: shivammathur/setup-php@v2
         with:
-          # PHP 8.2 is required, so Rector's code is PHP 8.2 compatible
-          php-version: 8.2
+          # PHP 8.4 is required, so Rector's code is PHP 8.4 compatible
+          php-version: 8.4
           coverage: none
           extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
           ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M
