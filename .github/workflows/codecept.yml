@@ -7,6 +7,9 @@ on:
       packagist_token:
         required: false
     inputs:
+      craft_version:
+        default: '3'
+        type: string
       php_versions:
         required: true
         type: string
@@ -111,6 +114,8 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
+      - name: Set version
+        run: composer config version "${{ inputs.craft_version }}.x-dev"
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
       - name: MySQL import timezones

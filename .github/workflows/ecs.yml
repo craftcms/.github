@@ -8,6 +8,9 @@ on:
       packagist_token:
         required: false
     inputs:
+      craft_version:
+        default: '3'
+        type: string
       php_version:
         required: true
         type: string
@@ -42,6 +45,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Set version
+        run: composer config version "${{ inputs.craft_version }}.x-dev"
 
       - name: Install Composer dependencies
         working-directory: ${{ inputs.working_directory }}

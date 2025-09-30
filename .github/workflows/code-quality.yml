@@ -3,6 +3,9 @@ name: Code Quality
 on:
   workflow_call:
     inputs:
+      craft_version:
+        default: '3'
+        type: string
       php_version:
         default: '8.0'
         type: string
@@ -21,6 +24,7 @@ jobs:
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
     with:
+      craft_version: ${{ inputs.craft_version }}
       php_version: ${{ inputs.php_version }}
       working_directory: ${{ inputs.working_directory }}
     secrets: inherit
@@ -29,6 +33,7 @@ jobs:
     if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
     uses: ./.github/workflows/phpstan.yml
     with:
+      craft_version: ${{ inputs.craft_version }}
       php_version: ${{ inputs.php_version }}
       working_directory: ${{ inputs.working_directory }}
     secrets: inherit
@@ -43,4 +48,6 @@ jobs:
     name: Rector
     if: ${{ contains(fromJSON(inputs.jobs), 'rector') }}
     uses: ./.github/workflows/rector.yml
+    with:
+      craft_version: ${{ inputs.craft_version }}
     secrets: inherit
