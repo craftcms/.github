@@ -9,6 +9,9 @@ on:
       node_version:
         default: '16'
         type: string
+      working_directory:
+        default: '.'
+        type: string
       jobs:
         default: '["ecs"]'
         type: string
@@ -19,6 +22,7 @@ jobs:
     uses: ./.github/workflows/ecs.yml
     with:
       php_version: ${{ inputs.php_version }}
+      working_directory: ${{ inputs.working_directory }}
     secrets: inherit
   phpstan:
     name: PHPStan
@@ -26,6 +30,7 @@ jobs:
     uses: ./.github/workflows/phpstan.yml
     with:
       php_version: ${{ inputs.php_version }}
+      working_directory: ${{ inputs.working_directory }}
     secrets: inherit
   prettier:
     name: Prettier
@@ -33,6 +38,7 @@ jobs:
     uses: ./.github/workflows/prettier.yml
     with:
       node_version: ${{ inputs.node_version }}
+      working_directory: ${{ inputs.working_directory }}
   rector:
     name: Rector
     if: ${{ contains(fromJSON(inputs.jobs), 'rector') }}

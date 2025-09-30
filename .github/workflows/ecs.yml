@@ -11,7 +11,9 @@ on:
       php_version:
         required: true
         type: string
-
+      working_directory:
+        default: '.'
+        type: string
 jobs:
   ecs:
     name: ECS
@@ -42,7 +44,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Composer dependencies
+        working-directory: ${{ inputs.working_directory }}
         run: composer install --no-interaction --no-ansi --no-progress
 
       - name: Run ECS checks
+        working-directory: ${{ inputs.working_directory }}
         run: vendor/bin/ecs check --ansi

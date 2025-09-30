@@ -30,6 +30,9 @@ on:
       slack_subteam:
         default: ''
         type: string
+      working_directory:
+        default: '.'
+        type: string
 concurrency:
   group: ci-global-${{ github.ref }}
   cancel-in-progress: true
@@ -39,9 +42,10 @@ jobs:
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') || contains(fromJSON(inputs.jobs), 'phpstan') || contains(fromJSON(inputs.jobs), 'prettier')  || contains(fromJSON(inputs.jobs), 'rector')}}
     uses: ./.github/workflows/code-quality.yml
     with:
-      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2"}')[inputs.craft_version] || inputs.php_version }}
+      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2","6":"8.4"}')[inputs.craft_version] || inputs.php_version }}
       jobs: ${{ inputs.jobs }}
       node_version: ${{ inputs.node_version }}
+      working_directory: ${{ inputs.working_directory }}
     secrets: inherit
   tests:
     name: Tests
@@ -50,6 +54,7 @@ jobs:
     uses: ./.github/workflows/codecept.yml
     with:
       php_versions: ${{ toJSON(fromJSON('{"3":["7.2","7.3","7.4","8.0","8.1"],"4":["8.0","8.1","8.2","8.3","8.4"],"5":["8.2","8.3","8.4"],"6":["8.4"]}')[inputs.craft_version] || inputs.php_version) }}
+      working_directory: ${{ inputs.working_directory }}
     secrets: inherit
   notify-slack:
     name: Notify Slack

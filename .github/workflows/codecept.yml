@@ -10,10 +10,16 @@ on:
       php_versions:
         required: true
         type: string
+      working_directory:
+        default: '.'
+        type: string
 jobs:
   # Run tests in the matrix
   tests:
     runs-on: ${{ matrix.operating-system }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
     strategy:
       matrix:
         operating-system: ["ubuntu-latest"]
