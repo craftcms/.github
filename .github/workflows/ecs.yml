@@ -47,6 +47,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Set version
+        working-directory: ${{ inputs.working_directory }}
         run: composer config version "${{ inputs.craft_version }}.x-dev"
 
       - name: Install Composer dependencies
