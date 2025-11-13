@@ -1,4 +1,7 @@
 name: Prettier
+env:
+  CRAFT_FONTAWESOME_TOKEN: ${{ secrets.CRAFT_FONTAWESOME_TOKEN }}
+
 on:
   workflow_call:
     inputs:
