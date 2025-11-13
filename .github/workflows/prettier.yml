@@ -11,6 +11,9 @@ on:
       working_directory:
         default: '.'
         type: string
+      fontawesome_token:
+        default: ''
+        type: string
 jobs:
   prettier:
     name: Prettier
