@@ -34,7 +34,7 @@ jobs:
     services:
       # Install Postgres
       pgsql:
-        image: postgres:latest
+        image: ${{ (matrix.db == 'postgres') && 'postgres:latest' || '' }}
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: mysecretpassword
@@ -45,7 +45,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
       # Install MySQL
       mysql:
-        image: mysql:8.0
+        image: ${{ (matrix.db == 'mysql') && 'mysql:8.0' || '' }}
         env:
           MYSQL_ROOT_PASSWORD: mysecretpassword
           MYSQL_DATABASE: craft_test
