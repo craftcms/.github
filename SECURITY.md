@@ -97,13 +97,13 @@ Do **not** test against any Craft Cloud site you don’t own, and do **not** per
 
 ## Severity & Remediation
 
-We do assign the broader categories of **Critical**, **High**, **Medium**, and **Low**.
+We do assign the broader categories of **Critical**, **High**, **Moderate**, and **Low**.
 
 **Critical:** There is a very high chance of compromise for affected sites. Typically, these are through untrusted or unauthenticated users, and there may already be active exploits in the wild targeting vulnerable sites.
 
 **High:** Poses a potential security threat to the underlying installation, although the flaw is usually difficult to exploit.
 
-**Medium:** Typically requires local network or user privileges to be exploited first, though not necessarily. The impact on business operations is slightly higher. The flaw is usually difficult to exploit.
+**Moderate:** Typically requires local network or user privileges to be exploited first, though not necessarily. The impact on business operations is slightly higher. The flaw is usually difficult to exploit.
 
 **Low:** Most XSS vulnerabilities. Most denial of service vulnerabilities. They typically do not compromise the underlying data or system and don’t pose a risk of privilege escalation, arbitrary code execution, or data loss. Or if they do, but they have to go against our [security recommendations](https://craftcms.com/knowledge-base/securing-craft) to achieve it (e.g., `allowAdminChanges` enabled in production).
 
@@ -111,7 +111,7 @@ We do assign the broader categories of **Critical**, **High**, **Medium**, and *
 
 As a rule of thumb, here are some guidelines on when customers should update, depending on the severity level.
 
-| Critical  | High  | Medium  | Low  |
+| Critical  | High  | Moderate  | Low  |
 |---|---|---|---|
 | Update ASAP  | Update within 30 days  | Update within 90 days (depending on your site’s needs)  | Update at your convenience (depending on your site’s needs) |
 
