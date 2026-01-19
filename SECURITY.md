@@ -8,7 +8,7 @@ We strive to ensure the integrity of our software and infrastructure and to have
 
 Craft CMS is a self-hosted PHP web application. It is important for developers, administrators, and customers to realize it is not a “shrink-wrapped” solution and that every site is 100% unique and custom-built. Because of this, we do not have access to the infrastructure a self-hosted Craft is installed on, or even knowledge of where it is hosted.
 
-From a security perspective, we are primarily concerned with issues that arise from a fresh Craft installation, not any front-end site implementation, nor custom plugins or modules, unless they reveal a foundational issue that can be addressed in Craft’s native code across all installations.
+From a security perspective, we are primarily concerned with issues that arise from a fresh Craft installation, not any front-end site implementation or custom plugins or modules, unless they reveal a foundational issue that can be addressed in Craft’s native code across all installations.
 
 ## Patches and Updates
 
@@ -105,11 +105,11 @@ We do assign the broader categories of **Critical**, **High**, **Medium**, and *
 
 **Medium:** Typically requires local network or user privileges to be exploited first, though not necessarily. The impact on business operations is slightly higher. The flaw is usually difficult to exploit.
 
-**Low:** Most XSS vulnerabilities. Most denial of service vulnerabilities. They typically do not compromise the underlying data or system and don’t pose a risk of privilege escalation, arbitrary code execution, or data loss.
+**Low:** Most XSS vulnerabilities. Most denial of service vulnerabilities. They typically do not compromise the underlying data or system and don’t pose a risk of privilege escalation, arbitrary code execution, or data loss. Or if they do, but they have to go against our [security recommendations](https://craftcms.com/knowledge-base/securing-craft) to achieve it (e.g., `allowAdminChanges` enabled in production).
 
 ---
 
-As a rule of thumb, here are some guidelines on when customers should update depending on the severity level.
+As a rule of thumb, here are some guidelines on when customers should update, depending on the severity level.
 
 | Critical  | High  | Medium  | Low  |
 |---|---|---|---|
