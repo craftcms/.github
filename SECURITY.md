@@ -107,6 +107,8 @@ We do assign the broader categories of **Critical**, **High**, **Medium**, and *
 
 **Low:** Most XSS vulnerabilities. Most denial of service vulnerabilities. They typically do not compromise the underlying data or system and don’t pose a risk of privilege escalation, arbitrary code execution, or data loss.
 
+---
+
 As a rule of thumb, here are some guidelines on when customers should update depending on the severity level.
 
 | Critical  | High  | Medium  | Low  |
