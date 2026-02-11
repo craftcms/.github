@@ -71,7 +71,7 @@ Do **not** test against any Craft Cloud site you don’t own, and do **not** per
 ### Non-Qualifying Vulnerabilities
 
 - Reports from automated tools or scanners
-- Theoretical attacks without proof of exploitability
+- Theoretical attacks, direct or in a chain, without proof of exploitability
 - Attacks that can be guarded against by following our [security recommendations](https://craftcms.com/knowledge-base/securing-craft).
 - Server configuration issues outside of Craft’s control
 - [Denial of Service](https://en.wikipedia.org/wiki/Denial-of-service_attack) attacks
@@ -93,7 +93,8 @@ Do **not** test against any Craft Cloud site you don’t own, and do **not** per
 - Missing CSRF tokens on forms (unless you have a proof of concept, many forms either don’t need CSRF or are mitigated in other ways) and “logout” CSRF attacks
 - [Open redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
 - XSS attacks that do not directly lead to a more foundational threat (e.g., privilege escalation)
-- Already [known](https://github.com/craftcms/cms/security/advisories) [issues](https://github.com/craftcms/commerce/security/advisories). 
+- Already [known](https://github.com/craftcms/cms/security/advisories) [issues](https://github.com/craftcms/commerce/security/advisories).
+- Elevated sessions are meant to minimize the impact of privilege escalation. We are not interested in elevated session reports outside of that context
 
 ## Severity & Remediation
 
