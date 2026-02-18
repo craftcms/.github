@@ -36,6 +36,14 @@ While working to identify potential security vulnerabilities, we ask that you:
 - Provide a quality report with precise explanations and concrete attack scenarios.
 - Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receive security fixes.
 
+## AI
+
+Please disclose the level of AI used to generate the report.
+
+- Did you use an AI to find the problem?
+- If so, to what extent? Did you verify the results?
+- Did you use AI to generate this submission?
+
 ## Triage & Collaboration
 
 Once an issue has been reported, we will attempt to replicate it locally, on the latest release of Craft or Commerce. We might ask follow-up questions depending on the report.
