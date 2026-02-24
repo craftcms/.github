@@ -130,16 +130,3 @@ As a rule of thumb, here are some guidelines on when customers should update, de
 | Update ASAP  | Update within 30 days  | Update within 90 days (depending on your site’s needs)  | Update at your convenience (depending on your site’s needs) |
 
 We do not calculate CVSS scores when assessing severity, largely because we find the one-dimensional scoring calculator [does not provide adequate context or nuance](https://daniel.haxx.se/blog/2025/01/23/cvss-is-dead-to-us/) for software like Craft CMS.
-
-
-## Bounties
-
-We’re happy to offer researchers a monetary reward to show our appreciation for the work it can take to find and report a vulnerability.
-
-Reward amounts vary depending on the severity. Our minimum reward for a qualifying vulnerability report is $50 USD, and we expect to pay $500+ USD for significant vulnerabilities.
-
-A report will qualify for a bounty if:
-
-- Our [Guidelines](#guidelines) have been fully followed.
-- The vulnerability was previously unknown to us, or your report provides more information or shows the vulnerability to be more extensive than we initially thought.
-- The vulnerability is non-trivial.
