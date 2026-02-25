@@ -43,7 +43,7 @@ jobs:
     uses: ./.github/workflows/code-quality.yml
     with:
       craft_version: ${{ inputs.craft_version }}
-      php_version: ${{ inputs.php_version || fromJSON('{"3":"7.2","4":"8.0","5":"8.2","6":"8.5"}')[inputs.craft_version] }}
+      php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2","6":"8.5"}')[inputs.craft_version] || inputs.php_version }}
       jobs: ${{ inputs.jobs }}
       node_version: ${{ inputs.node_version }}
       working_directory: ${{ inputs.working_directory }}
@@ -55,7 +55,7 @@ jobs:
     uses: ./.github/workflows/codecept.yml
     with:
       craft_version: ${{ inputs.craft_version }}
-      php_versions: ${{ toJSON(inputs.php_version || fromJSON('{"3":["7.2","7.3","7.4","8.0","8.1"],"4":["8.0","8.1","8.2","8.3","8.4"],"5":["8.2","8.3","8.4"],"6":["8.5"]}')[inputs.craft_version]) }}
+      php_versions: ${{ toJSON(fromJSON('{"3":["7.2","7.3","7.4","8.0","8.1"],"4":["8.0","8.1","8.2","8.3","8.4"],"5":["8.2","8.3","8.4"],"6":["8.5"]}')[inputs.craft_version] || inputs.php_version) }}
       working_directory: ${{ inputs.working_directory }}
     secrets: inherit
   notify-slack:
