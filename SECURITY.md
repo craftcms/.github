@@ -64,7 +64,7 @@ We wait 30 days _after the Craft or Commerce release_ that has a fix before we m
 
 ## Scope
 
-We are only interested in reports directly from the security researcher who discovered them, not from third-party bug bounty programs such as [HackerOne](https://www.hackerone.com).
+We are only interested in reports directly from the security researcher who discovered them, not from third-party bug bounty programs.
 
 ### Craft CMS, Craft Commerce, and plugins
 
