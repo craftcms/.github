@@ -22,6 +22,8 @@ Even if you are on a supported version, you should make sure you are running the
 
 We triage, acknowledge, patch, and disclose any vulnerabilities in an industry-standard manner.
 
+If you believe you have discovered a potential security vulnerability in our products, please report your findings to us as quickly as possible.
+
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability, please review these guidelines before submitting a report. We take security seriously and do our best to resolve security issues as quickly and responsibly as possible.
@@ -30,29 +32,26 @@ If you discover a security vulnerability, please review these guidelines before 
 
 While working to identify potential security vulnerabilities, we ask that you:
 
-- Share any issues you discover with us via support@craftcms.com, support@craft.cloud, or by creating a [GitHub Security Advisory](https://github.com/craftcms/cms/security/advisories).
-- Give us a reasonable amount of time to address and release any fixes for reported issues. We publicly disclose issues 30 days after a release that includes a fix.
-- Only report issues [in scope](#scope).
-- Provide a quality report with precise explanations and concrete attack scenarios.
-- Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receive security fixes.
 
-## AI
-
-Please disclose the level of AI used to generate the report.
-
-- Did you use an AI to find the problem?
-- If so, to what extent? Did you verify the results?
-- Did you use AI to generate this submission?
+* Share any issues you discover with us via our Vulnerability Disclosure Program on Hackrate at [https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp](https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp)
+* Give us a reasonable amount of time to address and release any fixes for reported issues. We publicly disclose issues 30 days after a release that includes a fix.
+* Only report issues [in scope](#scope).
+* Provide a quality report with precise explanations, concrete attack scenarios, and the steps to follow to reproduce the issue. Attachments such as screenshots or proof-of-concept code are highly recommended.
+* Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receive security fixes.
+* Test against authorized targets at Hackrate.
+* Avoid privacy violations, destruction of data, and interruption or degradation of Craft CMS’s services.
+* Only interact with accounts you own.
+* Rewards or recognition will not be awarded if our security team cannot reproduce and verify a finding.
+* You must be the first person to report a valid finding.
+* If you find the same vulnerability several times, report only one finding. Multiple vulnerabilities caused by a single underlying issue will be considered a single report.
 
 ## Triage & Collaboration
 
 Once an issue has been reported, we will attempt to replicate it locally, on the latest release of Craft or Commerce. We might ask follow-up questions depending on the report.
 
-We manage all of our security advisories through GitHub, in [their](https://github.com/craftcms/cms/security) [respective](https://github.com/craftcms/commerce/security) [repositories](https://github.com/craftcms/cloud/security).
+We manage all of our security advisories and reports through our VDP at [Hackrate](https://www.hckrt.com).
 
-If the issue was reported via a GitHub security advisory, we will move it from draft to triage.
-
-If it was reported [via](https://craftcms.com/contact) [other](mailto://support@craftcms.com) [means](support@craft.cloud), we will create a GitHub Security Advisory and ask that you share your GitHub username, so we can credit you and add you as a collaborator.
+If it is accepted, we will also publish a GitHub Security Advisory in the [the](https://github.com/craftcms/cms/security) [respective](https://github.com/craftcms/commerce/security) [repository](https://github.com/craftcms/cloud/security).
 
 You can see an up-to-date list of known/fixed security issues in those repositories, and those should be considered the “source of truth” for security issues.
 
@@ -64,7 +63,7 @@ We wait 30 days _after the Craft or Commerce release_ that has a fix before we m
 
 ## Scope
 
-We are only interested in reports directly from the security researcher who discovered them, not from third-party bug bounty programs.
+We are only interested in reports directly from the security researcher who discovered them.
 
 ### Craft CMS, Craft Commerce, and plugins
 
@@ -74,44 +73,54 @@ We are interested in vulnerabilities that affect Craft or [first-party Craft plu
 
 We are interested in infrastructure-related vulnerabilities found on Craft Cloud.
 
-Do **not** test against any Craft Cloud site you don’t own, and do **not** perform any tests that degrade the Craft Cloud’s services.
+Do **not** test against any Craft Cloud site you don’t own, and do **not** perform any tests that degrade Craft Cloud’s services.
 
 ### Non-Qualifying Vulnerabilities
 
-Avoid reporting vulnerabilities which meet the following criteria:
+Avoid reporting vulnerabilities that meet the following criteria:
 
-- Reports from automated tools or scanners
-- Theoretical attacks, direct or in a chain, without proof of exploitability
-- Attacks that can be guarded against by following our [security recommendations](https://craftcms.com/knowledge-base/securing-craft).
-- Server configuration issues outside of Craft’s control
-- [Denial of Service](https://en.wikipedia.org/wiki/Denial-of-service_attack) attacks
-- [Brute force attacks](https://en.wikipedia.org/wiki/Brute-force_attack) (e.g., on password or token hashes)
-- Username or email address enumeration
-- Social engineering of Pixel & Tonic staff or users of Craft installations
-- Physical attacks against Craft installations
-- Attacks involving physical access to a user’s device or involving a device or network that’s already seriously compromised (e.g., [man-in-the-middle attacks](https://en.wikipedia.org/wiki/Man-in-the-middle_attack))
-- Attacks that are the result of a third-party Craft plugin should be reported to the plugin’s author
-- Attacks that are the result of a third-party library should be reported to the library maintainers
-- Bugs that rely on unlikely user interactions (i.e., the user effectively attacking themselves)
-- Disclosure of tools or libraries used by Craft and/or their versions
-- Issues that are the result of a user ignoring common security best practices (like sharing their password publicly)
-- Missing security headers that do not lead directly to a vulnerability via proof of concept
-- Vulnerabilities affecting users of outdated/unsupported browsers or platforms
-- Vulnerabilities affecting outdated versions of Craft
-- Any behavior that is clearly documented
-- Issues discovered while scanning a site you don’t own without permission
-- Missing CSRF tokens on forms (unless you have a proof of concept, many forms either don’t need CSRF or are mitigated in other ways) and “logout” CSRF attacks
-- [Open redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
-- XSS attacks that do not directly lead to a more foundational threat (e.g., privilege escalation)
-- Already [known](https://github.com/craftcms/cms/security/advisories) [issues](https://github.com/craftcms/commerce/security/advisories).
+* Reports from automated tools or scanners
+* Theoretical attacks, direct or in a chain, without proof of exploitability
+* Attacks that can be guarded against by following our [security recommendations](https://craftcms.com/knowledge-base/securing-craft).
+* Server configuration issues outside of Craft’s control
+* [Denial of Service](https://en.wikipedia.org/wiki/Denial-of-service_attack) attacks
+* [Brute force attacks](https://en.wikipedia.org/wiki/Brute-force_attack) (e.g., on password or token hashes)
+* Username or email address enumeration
+* Social engineering of Pixel & Tonic staff or users of Craft installations
+* Physical attacks against Craft installations
+* Attacks involving physical access to a user’s device or involving a device or network that’s already seriously compromised (e.g., [man-in-the-middle attacks](https://en.wikipedia.org/wiki/Man-in-the-middle_attack))
+* Attacks that are the result of a third-party Craft plugin should be reported to the plugin’s author
+* Attacks that are the result of a third-party library should be reported to the library maintainers
+* Bugs that rely on unlikely user interactions (i.e., the user effectively attacking themselves)
+* Disclosure of tools or libraries used by Craft and/or their versions
+* Issues that are the result of a user ignoring common security best practices (like sharing their password publicly)
+* Missing security headers that do not lead directly to a vulnerability via proof of concept
+* Vulnerabilities affecting users of outdated/unsupported browsers or platforms
+* Vulnerabilities affecting outdated versions of Craft
+* Any behavior that is clearly documented
+* Issues discovered while scanning a site you don’t own without permission
+* Missing CSRF tokens on forms (unless you have a proof of concept, many forms either don’t need CSRF or are mitigated in other ways) and “logout” CSRF attacks
+* Reports of insecure SSL/TLS ciphers
+* Homograph attacks
+* Password and account recovery policies, such as reset link expiration or password complexity
+* Disclosure of known public files or directories
+* Errors thrown by web services (e.g., nginx) when the requests are invalid / fuzzing
+* HttpOnly and Secure cookie flags, as well as other missing cookie flags
+* Missing security-related HTTP headers, which do not lead directly to a vulnerability
+* Massive automated actions on the platform through robots/crawling
+* RTLO and related issues
+* Invalid or missing SPF records (e.g., incomplete or missing SPF/DKIM/DMARC)
+* [Open redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html)
+* XSS attacks that do not directly lead to a more foundational threat (e.g., privilege escalation)
+* Already [known](https://github.com/craftcms/cms/security/advisories) [issues](https://github.com/craftcms/commerce/security/advisories).
 
 #### Elevated Sessions
 
-- Elevated sessions are intended as an extra layer of protection against **long-term** privilege escalation, in the event that a session has been hijacked. We are not interested in reports related to elevated sessions, outside of that context.
+* Elevated sessions are intended as an extra layer of protection against **long-term** privilege escalation, in the event that a session has been hijacked. We are not interested in reports related to elevated sessions, outside of that context.
 
 ## Severity & Remediation
 
-We do assign the broader categories of **Critical**, **High**, **Moderate**, and **Low**.
+We assign the broader severity categories of **Critical**, **High**, **Moderate**, and **Low**.
 
 **Critical:** There is a very high chance of compromise for affected sites. Typically, these are through untrusted or unauthenticated users, and there may already be active exploits in the wild targeting vulnerable sites.
 
@@ -125,8 +134,6 @@ We do assign the broader categories of **Critical**, **High**, **Moderate**, and
 
 As a rule of thumb, here are some guidelines on when customers should update, depending on the severity level.
 
-| Critical  | High  | Moderate  | Low  |
+| Critical| High| Moderate| Low|
 |---|---|---|---|
-| Update ASAP  | Update within 30 days  | Update within 90 days (depending on your site’s needs)  | Update at your convenience (depending on your site’s needs) |
-
-We do not calculate CVSS scores when assessing severity, largely because we find the one-dimensional scoring calculator [does not provide adequate context or nuance](https://daniel.haxx.se/blog/2025/01/23/cvss-is-dead-to-us/) for software like Craft CMS.
+| Update ASAP| Update within 30 days| Update within 90 days (depending on your site’s needs)| Update at your convenience (depending on your site’s needs) |
