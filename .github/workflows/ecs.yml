@@ -17,14 +17,19 @@ on:
       working_directory:
         default: '.'
         type: string
+
+permissions: {}
+
 jobs:
   ecs:
     name: ECS
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Setup PHP
         id: setup-php
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@8358ee0e2e8afe63c2fb8253d1d52085811ab1e5 # v2
         with:
           php-version: ${{ inputs.php_version }}
           extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
@@ -44,11 +49,15 @@ jobs:
             }
 
       - name: Checkout
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
       - name: Set version
         working-directory: ${{ inputs.working_directory }}
-        run: composer config version "${{ inputs.craft_version }}.x-dev"
+        env:
+          CRAFT_VERSION: ${{ inputs.craft_version }}
+        run: composer config version "${CRAFT_VERSION}.x-dev"
 
       - name: Install Composer dependencies
         working-directory: ${{ inputs.working_directory }}

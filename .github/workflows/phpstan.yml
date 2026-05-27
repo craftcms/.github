@@ -16,17 +16,22 @@ on:
       working_directory:
         default: '.'
         type: string
+
+permissions: {}
+
 jobs:
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: ${{ inputs.working_directory }}
     steps:
       - name: Setup PHP
         id: setup-php
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@8358ee0e2e8afe63c2fb8253d1d52085811ab1e5 # v2
         with:
           php-version: ${{ inputs.php_version }}
           extensions: 'ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip'
@@ -45,14 +50,18 @@ jobs:
               }
             }
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
       - name: Set version
-        run: composer config version "${{ inputs.craft_version }}.x-dev"
+        env:
+          CRAFT_VERSION: ${{ inputs.craft_version }}
+        run: composer config version "${CRAFT_VERSION}.x-dev"
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
       - name: Check .env.example.mysql exists
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@f02338908d150e00a4b8bebc2dad18bd9e5229b0 # v1
         with:
           files: "${{ inputs.working_directory }}/tests/.env.example.mysql"
       - name: Copy tests .env

@@ -18,36 +18,62 @@ on:
       jobs:
         default: '["ecs"]'
         type: string
+    secrets:
+      packagist_username:
+        required: false
+      packagist_token:
+        required: false
+      CRAFT_FONTAWESOME_TOKEN:
+        required: false
+
+permissions: {}
+
 jobs:
   ecs:
     name: ECS
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') }}
     uses: ./.github/workflows/ecs.yml
+    permissions:
+      contents: read
     with:
       craft_version: ${{ inputs.craft_version }}
       php_version: ${{ inputs.php_version }}
       working_directory: ${{ inputs.working_directory }}
-    secrets: inherit
+    secrets:
+      packagist_username: ${{ secrets.packagist_username }}
+      packagist_token: ${{ secrets.packagist_token }}
   phpstan:
     name: PHPStan
     if: ${{ contains(fromJSON(inputs.jobs), 'phpstan') }}
     uses: ./.github/workflows/phpstan.yml
+    permissions:
+      contents: read
     with:
       craft_version: ${{ inputs.craft_version }}
       php_version: ${{ inputs.php_version }}
       working_directory: ${{ inputs.working_directory }}
-    secrets: inherit
+    secrets:
+      packagist_username: ${{ secrets.packagist_username }}
+      packagist_token: ${{ secrets.packagist_token }}
   prettier:
     name: Prettier
     if: ${{ contains(fromJSON(inputs.jobs), 'prettier') }}
     uses: ./.github/workflows/prettier.yml
+    permissions:
+      contents: read
     with:
       node_version: ${{ inputs.node_version }}
       working_directory: ${{ inputs.working_directory }}
+    secrets:
+      CRAFT_FONTAWESOME_TOKEN: ${{ secrets.CRAFT_FONTAWESOME_TOKEN }}
   rector:
     name: Rector
     if: ${{ contains(fromJSON(inputs.jobs), 'rector') }}
     uses: ./.github/workflows/rector.yml
+    permissions:
+      contents: read
     with:
       craft_version: ${{ inputs.craft_version }}
-    secrets: inherit
+    secrets:
+      packagist_username: ${{ secrets.packagist_username }}
+      packagist_token: ${{ secrets.packagist_token }}

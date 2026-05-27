@@ -14,19 +14,29 @@ on:
       fontawesome_token:
         default: ''
         type: string
+    secrets:
+      CRAFT_FONTAWESOME_TOKEN:
+        required: false
+
+permissions: {}
+
 jobs:
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: ${{ inputs.working_directory }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
         with:
           node-version: ${{ inputs.node_version }}
 

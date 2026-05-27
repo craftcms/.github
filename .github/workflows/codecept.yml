@@ -16,10 +16,14 @@ on:
       working_directory:
         default: '.'
         type: string
+
+permissions: {}
+
 jobs:
-  # Run tests in the matrix
   tests:
     runs-on: ${{ matrix.operating-system }}
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: ${{ inputs.working_directory }}
@@ -32,58 +36,48 @@ jobs:
     env:
       PHP_EXTENSIONS: ctype,curl,dom,iconv,imagick,intl,json,mbstring,openssl,pcre,pdo,reflection,spl,zip
     services:
-      # Install Postgres
       pgsql:
-        image: ${{ (matrix.db == 'pgsql') && 'postgres:latest' || '' }}
+        image: ${{ (matrix.db == 'pgsql') && 'postgres:16' || '' }}
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: mysecretpassword
           POSTGRES_DB: craft_test
         ports:
           - 5432:5432
-        # Set health checks to wait until Postgres has started
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
-      # Install MySQL
       mysql:
         image: ${{ (matrix.db == 'mysql') && 'mysql:8.0' || '' }}
         env:
           MYSQL_ROOT_PASSWORD: mysecretpassword
           MYSQL_DATABASE: craft_test
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-        # Set health checks to wait until mysql has started
         options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 5
         ports:
           - 3306:3306
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set default test command environment variable
-        run: |
-          echo "TEST_COMMAND=./vendor/bin/codecept run unit,functional --fail-fast" >> $GITHUB_ENV
-      - name: Set test command for the code coverage environment
-        run: |
-          echo "TEST_COMMAND=./vendor/bin/codecept run unit,functional --fail-fast --coverage-xml coverage.xml;" >> $GITHUB_ENV
-        if: ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
       - name: Setup cache environment
         id: extcache
-        uses: shivammathur/cache-extensions@v1
+        uses: shivammathur/cache-extensions@8697372ec82cdbc63b18d946e783465eb401fbf9 # v1
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ${{ env.PHP_EXTENSIONS }}
-          key: extension-cache-v4 # change to clear the extension cache.
+          key: extension-cache-v4
       - name: Cache extensions
-        uses: actions/cache@v3
+        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
         with:
           path: ${{ steps.extcache.outputs.dir }}
           key: ${{ steps.extcache.outputs.key }}
           restore-keys: ${{ steps.extcache.outputs.key }}
       - name: Setup PHP
         id: setup-php
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@8358ee0e2e8afe63c2fb8253d1d52085811ab1e5 # v2
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ${{ env.PHP_EXTENSIONS }}
-          # error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
           ini-values: post_max_size=256M, max_execution_time=180, memory_limit=512M, error_reporting=6143
           ini-file: development
           tools: composer:v2
@@ -99,23 +93,29 @@ jobs:
               }
             }
       - name: Print PHP version
-        run: echo ${{ steps.setup-php.outputs.php-version }}
+        env:
+          PHP_VERSION: ${{ steps.setup-php.outputs.php-version }}
+        run: echo "$PHP_VERSION"
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
       - name: Copy tests .env
-        run: cp ./tests/.env.example.${{ matrix.db }} ./tests/.env
+        env:
+          DB_TYPE: ${{ matrix.db }}
+        run: cp "./tests/.env.example.${DB_TYPE}" ./tests/.env
       - name: Update .env creds
         run: sed -i 's/DB_PASSWORD=/DB_PASSWORD=mysecretpassword/' tests/.env
       - name: Cache Composer dependencies
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v3
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Set version
-        run: composer config version "${{ inputs.craft_version }}.x-dev"
+        env:
+          CRAFT_VERSION: ${{ inputs.craft_version }}
+        run: composer config version "${CRAFT_VERSION}.x-dev"
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-ansi --no-progress
       - name: MySQL import timezones
@@ -123,8 +123,7 @@ jobs:
         run: |
           mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --host=127.0.0.1 --port=3306 --user=root --password=mysecretpassword mysql
       - name: Run tests
-        run: ${{ env.TEST_COMMAND }}
-      # Only upload code coverage in specific scenarios
+        run: ./vendor/bin/codecept run unit,functional --fail-fast ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && '--coverage-xml coverage.xml' || '' }}
       - name: Upload coverage to Codecov
-        if: ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}}}
-        uses: codecov/codecov-action@v2
+        if: ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
+        uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b # v2

@@ -40,14 +40,18 @@ on:
         required: true
       slack_webhook_url:
         required: true
+
+permissions: {}
+
 jobs:
   notify-on-success:
     name: on success
     runs-on: ubuntu-latest
+    permissions: {}
     if: ${{ inputs.success }}
     steps:
       - name: Notify Slack
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@a9b2c8c2094d4951cd9a25df853aa5d73f5fa101 # v1
         with:
           status: 'success'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
@@ -59,10 +63,11 @@ jobs:
   notify-on-failure:
     name: on failure
     runs-on: ubuntu-latest
+    permissions: {}
     if: ${{ inputs.failure }}
     steps:
       - name: Notify Slack
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@a9b2c8c2094d4951cd9a25df853aa5d73f5fa101 # v1
         with:
           status: 'failure'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'
@@ -74,10 +79,11 @@ jobs:
   notify-on-cancelled:
     name: on cancelled
     runs-on: ubuntu-latest
+    permissions: {}
     if: ${{ !inputs.success && !inputs.failure }}
     steps:
       - name: Notify Slack
-        uses: innocarpe/actions-slack@v1
+        uses: innocarpe/actions-slack@a9b2c8c2094d4951cd9a25df853aa5d73f5fa101 # v1
         with:
           status: 'cancelled'
           success_text: '${{ inputs.success_text_prefix }} ${{ inputs.success_text }}'

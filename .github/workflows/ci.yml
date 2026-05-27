@@ -11,6 +11,8 @@ on:
         required: false
       packagist_token:
         required: false
+      CRAFT_FONTAWESOME_TOKEN:
+        required: false
     inputs:
       craft_version:
         default: '3'
@@ -33,38 +35,54 @@ on:
       working_directory:
         default: '.'
         type: string
+
+permissions: {}
+
 concurrency:
   group: ci-global-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
   code-quality:
     name: Code Quality
     if: ${{ contains(fromJSON(inputs.jobs), 'ecs') || contains(fromJSON(inputs.jobs), 'phpstan') || contains(fromJSON(inputs.jobs), 'prettier')  || contains(fromJSON(inputs.jobs), 'rector')}}
     uses: ./.github/workflows/code-quality.yml
+    permissions:
+      contents: read
     with:
       craft_version: ${{ inputs.craft_version }}
       php_version: ${{ fromJSON('{"3":"7.2","4":"8.0","5":"8.2","6":"8.5"}')[inputs.craft_version] || inputs.php_version }}
       jobs: ${{ inputs.jobs }}
       node_version: ${{ inputs.node_version }}
       working_directory: ${{ inputs.working_directory }}
-    secrets: inherit
+    secrets:
+      packagist_username: ${{ secrets.packagist_username }}
+      packagist_token: ${{ secrets.packagist_token }}
+      CRAFT_FONTAWESOME_TOKEN: ${{ secrets.CRAFT_FONTAWESOME_TOKEN }}
   tests:
     name: Tests
     needs: [code-quality]
     if: ${{ contains(fromJSON(inputs.jobs), 'tests') }}
     uses: ./.github/workflows/codecept.yml
+    permissions:
+      contents: read
     with:
       craft_version: ${{ inputs.craft_version }}
       php_versions: ${{ toJSON(fromJSON('{"3":["7.2","7.3","7.4","8.0","8.1"],"4":["8.0","8.1","8.2","8.3","8.4"],"5":["8.2","8.3","8.4"],"6":["8.5"]}')[inputs.craft_version] || inputs.php_version) }}
       working_directory: ${{ inputs.working_directory }}
-    secrets: inherit
+    secrets:
+      packagist_username: ${{ secrets.packagist_username }}
+      packagist_token: ${{ secrets.packagist_token }}
   notify-slack:
     name: Notify Slack
     needs: [code-quality, tests]
     if: ${{ always() && inputs.slack_subteam && inputs.notify_slack && github.event_name != 'pull_request' }}
     uses: ./.github/workflows/notify-slack.yml
+    permissions: {}
     with:
       success: ${{ !contains(needs.*.result, 'failure') }}
       failure: ${{ contains(needs.*.result, 'failure') }}
       failure_text_prefix: ${{ inputs.slack_subteam }}
-    secrets: inherit
+    secrets:
+      token: ${{ secrets.token }}
+      slack_webhook_url: ${{ secrets.slack_webhook_url }}
