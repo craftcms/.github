@@ -1,0 +1,27 @@
+name: Add Issues to Project
+
+on:
+  workflow_call:
+    inputs:
+      project-url:
+        description: 'GitHub Project URL'
+        required: false
+        type: string
+        default: 'https://github.com/orgs/craftcms/projects/16'
+    secrets:
+      add_to_project_pat:
+        description: 'PAT with project write access'
+        required: true
+
+permissions: {}
+
+jobs:
+  add-to-project:
+    name: Add to Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to project
+        uses: actions/add-to-project@960fbad431afda394cfcf8743445e741acd19e85 # v0.4.0
+        with:
+          project-url: ${{ inputs.project-url }}
+          github-token: ${{ secrets.add_to_project_pat }}
