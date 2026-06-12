@@ -126,5 +126,5 @@ jobs:
         run: ${{ env.TEST_COMMAND }}
       # Only upload code coverage in specific scenarios
       - name: Upload coverage to Codecov
-        if: ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}}}
+        if: ${{ (matrix.php-versions == '8.1' || matrix.php-versions == '8.2') && matrix.db == 'mysql' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
         uses: codecov/codecov-action@v2
