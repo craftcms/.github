@@ -59,7 +59,7 @@ We may ask you to verify the fix during the collaboration process.
 
 ## Disclosure Timeline
 
-We wait 30 days _after the Craft or Commerce release_ that has a fix before we make the security advisory public. This is to give customers time to update before any details are made public. We will also make an assigned CVE public at that time. We ask that the reporters not disclose any information about the vulnerability until that 30-day window is up and it is made public.
+We wait 30 days _after the Craft or Commerce release_ that has a fix before we make the security advisory public. This is to give customers time to update before any details are made public. We ask that the reporters not disclose any information about the vulnerability until that 30-day window is up and it is made public.
 
 ## Scope
 
