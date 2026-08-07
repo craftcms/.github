@@ -2,13 +2,13 @@
 
 The security of Craft CMS, Craft Commerce, Craft Cloud, and all Pixel & Tonic plugins is of the utmost importance to us, our community, and our customers.
 
-We strive to ensure the integrity of our software and infrastructure and to have processes in place to address all security issues in a timely manner while minimizing customer exposure.
+We strive to ensure the integrity of our software and infrastructure and to maintain processes to address all security issues in a timely manner while minimizing customer exposure.
 
 ## Overview
 
 Craft CMS is a self-hosted PHP web application. It is important for developers, administrators, and customers to realize it is not a “shrink-wrapped” solution and that every site is 100% unique and custom-built. Because of this, we do not have access to the infrastructure a self-hosted Craft is installed on, or even knowledge of where it is hosted.
 
-From a security perspective, we are primarily concerned with issues that arise from a fresh Craft installation, not any front-end site implementation or custom plugins or modules, unless they reveal a foundational issue that can be addressed in Craft’s native code across all installations.
+From a security perspective, we are primarily concerned with issues arising from a fresh Craft installation, not with front-end site implementations or custom plugins or modules, unless they reveal a foundational issue that can be addressed in Craft’s native code across all installations.
 
 ## Patches and Updates
 
@@ -32,12 +32,11 @@ If you discover a security vulnerability, please review these guidelines before 
 
 While working to identify potential security vulnerabilities, we ask that you:
 
-
 * Share any issues you discover with us via our Vulnerability Disclosure Program on Hackrate at [https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp](https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp)
 * Give us a reasonable amount of time to address and release any fixes for reported issues. We publicly disclose issues 30 days after a release that includes a fix.
 * Only report issues [in scope](#scope).
 * Provide a quality report with precise explanations, concrete attack scenarios, and the steps to follow to reproduce the issue. Attachments such as screenshots or proof-of-concept code are highly recommended.
-* Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receive security fixes.
+* Ensure you’re aware of the versions of Craft CMS and Craft Commerce that are actively [receiving security fixes](https://craftcms.com/knowledge-base/supported-versions). Craft Cloud is always open to receiving security fixes.
 * Test against authorized targets at Hackrate.
 * Avoid privacy violations, destruction of data, and interruption or degradation of Craft CMS’s services.
 * Only interact with accounts you own.
@@ -49,9 +48,7 @@ While working to identify potential security vulnerabilities, we ask that you:
 
 Once an issue has been reported, we will attempt to replicate it locally, on the latest release of Craft or Commerce. We might ask follow-up questions depending on the report.
 
-We manage all of our security advisories and reports through our VDP at [Hackrate](https://www.hckrt.com).
-
-If it is accepted, we will also publish a GitHub Security Advisory in the [the](https://github.com/craftcms/cms/security) [respective](https://github.com/craftcms/commerce/security) [repository](https://github.com/craftcms/cloud/security).
+If it is accepted, we will also publish a GitHub Security Advisory in [the](https://github.com/craftcms/cms/security) [respective](https://github.com/craftcms/commerce/security) [repository](https://github.com/craftcms/cloud/security).
 
 You can see an up-to-date list of known/fixed security issues in those repositories, and those should be considered the “source of truth” for security issues.
 
@@ -59,7 +56,7 @@ We may ask you to verify the fix during the collaboration process.
 
 ## Disclosure Timeline
 
-We wait 30 days _after the Craft or Commerce release_ that has a fix before we make the security advisory public. This is to give customers time to update before any details are made public. We ask that the reporters not disclose any information about the vulnerability until that 30-day window is up and it is made public.
+We wait 30 days _after the Craft or Commerce release_ that has a fix before we make the security advisory public. This is to give customers time to update before any details are made public. We will also make an assigned CVE public at that time. We ask that reporters not disclose any information about the vulnerability until the 30-day window has passed and it is made public.
 
 ## Scope
 
