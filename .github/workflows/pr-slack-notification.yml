@@ -2,9 +2,6 @@ name: PR Slack Notification
 
 on:
   workflow_call:
-    secrets:
-      slack_webhook_url:
-        required: true
 
 permissions: {}
 
@@ -14,7 +11,7 @@ jobs:
     steps:
       - name: Post to Slack
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_CLOUD_WEBHOOK_URL }}
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE: ${{ github.event.pull_request.title }}
