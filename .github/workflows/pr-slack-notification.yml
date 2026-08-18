@@ -21,6 +21,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           REPOSITORY: ${{ github.repository }}
         run: |
+          set -o pipefail
+
           jq -n \
             --arg author "$PR_AUTHOR" \
             --arg number "$PR_NUMBER" \
