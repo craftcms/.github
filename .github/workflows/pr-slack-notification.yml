@@ -1,4 +1,4 @@
-name: Notify Craft Cloud review requests
+name: PR Slack Notification
 
 on:
   workflow_call:
@@ -10,7 +10,6 @@ permissions: {}
 
 jobs:
   notify:
-    if: github.event.requested_team.slug == 'craft-cloud'
     runs-on: ubuntu-latest
     steps:
       - name: Post to Slack
@@ -29,9 +28,9 @@ jobs:
             --arg title "$PR_TITLE" \
             --arg url "$PR_URL" \
             '{
-              text: "Craft Cloud review requested",
+              text: "Pull request notification",
               blocks: [
-                {type: "section", text: {type: "mrkdwn", text: ("*Review requested:* <" + $url + "|" + $repository + " #" + $number + ">")}},
+                {type: "section", text: {type: "mrkdwn", text: ("*Pull request:* <" + $url + "|" + $repository + " #" + $number + ">")}},
                 {type: "section", text: {type: "plain_text", text: ($title + " — by @" + $author), emoji: true}}
               ]
             }' |
