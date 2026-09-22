@@ -32,7 +32,7 @@ If you discover a security vulnerability, please review these guidelines before 
 
 While working to identify potential security vulnerabilities, we ask that you:
 
-* Share any issues you discover with us via our Vulnerability Disclosure Program on Hackrate at [https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp](https://www.hckrt.com/Reports/EmbeddedReportForm?program=craftcms-vdp)
+* Share any issues you discover with us via our Vulnerability Disclosure Program on Hackrate at [https://craftcms.com/security](https://craftcms.com/security)
 * Give us a reasonable amount of time to address and release any fixes for reported issues. We publicly disclose issues 30 days after a release that includes a fix.
 * Only report issues [in scope](#scope).
 * Provide a quality report with precise explanations, concrete attack scenarios, and the steps to follow to reproduce the issue. Attachments such as screenshots or proof-of-concept code are highly recommended.
