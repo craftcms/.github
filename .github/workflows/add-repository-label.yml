@@ -1,0 +1,30 @@
+# .github/workflows/add-repository-label.yml
+
+name: Add repository label
+
+on:
+  workflow_call:
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add repository label
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPO_NAME: ${{ github.event.repository.name }}
+
+        run: |
+          LABEL="$REPO_NAME"
+
+          gh label create "repo:$LABEL" \
+            --repo "$GH_REPO" \
+            --color "ededed" \
+            --force
+
+          gh issue edit "$ISSUE_NUMBER" \
+            --repo "$GH_REPO" \
+            --add-label "repo:$LABEL"
