@@ -129,8 +129,20 @@ We assign the broader severity categories of **Critical**, **High**, **Moderate*
 
 ---
 
+Timely updates are more important than ever.
+
 As a rule of thumb, here are some guidelines on when customers should update, depending on the severity level.
 
 | Critical| High| Moderate| Low|
 |---|---|---|---|
 | Update ASAP| Update within 30 days| Update within 90 days (depending on your site’s needs)| Update at your convenience (depending on your site’s needs) |
+
+Our standard disclosure window is 30 days. During that period, customers can install the patched release before the GitHub Security Advisory and any associated CVEs are made public.
+
+That 30-day period should not be taken as a guarantee that the vulnerability will remain secret.
+
+Once a patch is publicly available, a sufficiently motivated researcher, or an automated agent, can compare the old and new code and potentially determine what was fixed.
+
+That 30-day window should be considered a general patch adoption window, not a secrecy window.
+
+For higher-risk sites—such as those handling commerce, personal information, financial data, or other sensitive material, the appropriate response time may be shorter.
